@@ -28,7 +28,7 @@
 
 		}
 
-		function insert($nombre, $apellido, $correo, $telefono){
+		function insert_medico($nombre, $apellido, $correo, $telefono){
 			$conn = conn();
 			
 			$sql = "INSERT INTO revista.medicos (nombre, apellido, correo, telefono) VALUES ('{$nombre}', '{$apellido}', '{$correo}', '{$telefono}'); ";
@@ -38,21 +38,30 @@
 			return "ok";
 		}
 
-		function update($id, $nombre, $apellido, $correo, $telefono){
+		function edit_medico($id){
+			$conn = conn();
+			
+			$sql = "SELECT * FROM revista.medicos WHERE id_medico={$id}; ";
+			$result = $conn->query($sql);
+
+			return $result;
+		}
+
+		function update_medico($id, $nombre, $apellido, $correo, $telefono){
 			$conn = conn();
 
 			
-			$sql = "UPDATE revista.medicos SET nombre='{$nombre}', apellido='{$apellido}', correo='{$correo}', telefono='{$telefono}' where id_medico={$id}; ";
+			$sql = "UPDATE revista.medicos SET nombre='{$nombre}', apellido='{$apellido}', correo='{$correo}', telefono='{$telefono}' WHERE id_medico={$id}; ";
+
 			$result = $conn->query($sql);
-
-
+			
 			return "ok";
 		}
 
-		function edit($id){
+		function delete_medico($id){
 			$conn = conn();
 			
-			$sql = "SELECT * FROM revista.medicos where id_medico={$id}; ";
+			$sql = "DELETE FROM revista.medicos WHERE id_medico={$id}; ";
 			$result = $conn->query($sql);
 
 

@@ -1,8 +1,5 @@
 <?php 
 
-$arr_dir[] = explode("\\", getcwd());
-$path = $arr_dir[0][0] . "/" . $arr_dir[0][1] . "/" . $arr_dir[0][2] . "/" . $arr_dir[0][3];
-
 //require $path . '/app/controller/medicos_controller.php';
 
 // $__PATH = dirname(dirname(__FILE__));
@@ -66,7 +63,7 @@ require 'medicos_model.php';
 						echo "<td>" . $row["latitud"] 	. "</td>";
 						echo "<td>" . $row["altitud"] 	. "</td>";
 						echo "<td>" . $row["longitud"] 	. "</td>";
-						echo "<td> <a href='medicos_edit.php?id={$id}' >Edit</a> | RM</td>";
+						echo "<td> <a href='medicos_view_details.php?id={$id}' >Ver</a> | <a href='medicos_edit.php?id={$id}' >Editar</a> | <a href='medicos_controller.php?id={$id}&op=D' >Borrar</a></td>";
 					echo "</tr>";
 				}
 			} else {

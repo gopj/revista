@@ -1,8 +1,5 @@
 <?php
 
-$arr_dir[] = explode("\\", getcwd());
-$path = $arr_dir[0][0] . "/" . $arr_dir[0][1] . "/" . $arr_dir[0][2] . "/" . $arr_dir[0][3];
-
 ?>
 
 <!DOCTYPE html>

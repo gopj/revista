@@ -1,7 +1,5 @@
 <?php
 
-$arr_dir[] = explode("\\", getcwd());
-$path = $arr_dir[0][0] . "/" . $arr_dir[0][1] . "/" . $arr_dir[0][2] . "/" . $arr_dir[0][3];
 
 ?>
 
@@ -14,7 +12,7 @@ $path = $arr_dir[0][0] . "/" . $arr_dir[0][1] . "/" . $arr_dir[0][2] . "/" . $ar
 
 <h3>Agregar</h3>
 
-<form action="medicos_controller.php" method="POST" >
+<form action="medicos_controller.php?op=A" method="POST" >
 	Nombre: <input type="text" name="nombre" />
 	Apellido: <input type="text" name="apellido" />
 	Correo: <input type="text" name="correo" />

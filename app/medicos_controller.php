@@ -2,27 +2,25 @@
 
 require 'medicos_model.php';
 
-print_r($_POST);
+$op = @$_GET['op'];
 
-$id = @$_POST['id'];
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
+$id 		= @$_GET['id'];
+$nombre 	= @$_POST['nombre'];
+$apellido	= @$_POST['apellido'];
+$correo 	= @$_POST['correo'];
+$telefono 	= @$_POST['telefono'];
 
-if ($id != "") {
-	echo update($id, $nombre, $apellido, $correo, $telefono);
-	header("Location: medicos_control.php");
+if ($op == "A") {
+	//Option A - Insert
+	echo insert_medico($nombre, $apellido, $correo, $telefono);
+} elseif ($op == "E") {
+	//Oprion E - Edit
+	echo update_medico($id, $nombre, $apellido, $correo, $telefono);
+} elseif ($op == "D") {
+	//Option D - Delete
+	echo delete_medico($id);
 }
 
-if ($nombre != "") {
-
-	echo insert($nombre, $apellido, $correo, $telefono);
-	header("Location: medicos_control.php");
-
-} else {
-	header("Location: medicos_add.php");
-	exit;
-}
+header("Location: medicos_control.php");
 
 ?>

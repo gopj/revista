@@ -1,38 +1,45 @@
-<?php
+<?php 
 
-include 'medicos_model.php';
 
-$id = $_GET["id"];
+require 'medicos_model.php';
+
+// $__PATH = dirname(dirname(__FILE__));
+
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Medicos - Editar</title>
+	<title>Médicos - Lista</title>
+
+	<style type="text/css">
+	/*	body {
+				background-color:black;
+				color:#259b24;
+				font-family: "Consolas";
+
+			}
+	*/
+	</style>
 </head>
 <body>
 
-<h3>Editar</h3>
 
-<form action="medicos_controller.php?op=E&id=<?=$id?>" method="POST" >
+<?php
+		$id = $_GET['id'];
 
-	<?php
 		$result = edit_medico($id);
 		while ($row = $result->fetch_assoc()){
-	?>
-	<input type="text" name="id" value="<?php echo $row['id_medico'] ?>" hidden></input>
+?>
+
+<h3> Detalles - <?php echo $row['nombre'] ?> </h3>
+
 	Nombre: <input type="text" name="nombre" value="<?php echo $row['nombre'] ?>" />
 	Apellido: <input type="text" name="apellido" value="<?php echo $row['apellido'] ?>"/>
 	Correo: <input type="text" name="correo" value="<?php echo $row['correo'] ?>" />
 	Teléfono: <input type="text" name="telefono" value="<?php echo $row['telefono'] ?>" />
 
-	<?php } ?>
-
-    <input type="submit" value="Guardar" />
-
-</form >
-
+<?php } ?>
 
 </body>
 </html>
