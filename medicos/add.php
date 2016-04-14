@@ -8,11 +8,13 @@
 <head>
 	<title> Medicos - Agregar</title>
 </head>
+
+<script src="http://maps.googleapis.com/maps/api/js"></script>
 <body>
 
 <h3>Agregar</h3>
 
-<form action="medicos_controller.php?op=A" method="POST" >
+<form action="controller.php?op=A" method="POST" >
 	Nombre: <input type="text" name="nombre" />
 	Apellido: <input type="text" name="apellido" />
 	Correo: <input type="text" name="correo" />

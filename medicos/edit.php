@@ -1,6 +1,6 @@
 <?php
 
-include 'medicos_model.php';
+include 'model.php';
 
 $id = $_GET["id"];
 
@@ -15,7 +15,7 @@ $id = $_GET["id"];
 
 <h3>Editar</h3>
 
-<form action="medicos_controller.php?op=E&id=<?=$id?>" method="POST" >
+<form action="controller.php?op=E&id=<?=$id?>" method="POST" >
 
 	<?php
 		$result = edit_medico($id);

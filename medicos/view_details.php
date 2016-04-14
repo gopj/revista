@@ -1,7 +1,7 @@
 <?php 
 
 
-require 'medicos_model.php';
+require 'model.php';
 
 // $__PATH = dirname(dirname(__FILE__));
 

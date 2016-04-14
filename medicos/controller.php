@@ -1,6 +1,6 @@
 <?php
 
-require 'medicos_model.php';
+require 'model.php';
 
 $op = @$_GET['op'];
 
@@ -21,6 +21,6 @@ if ($op == "A") {
 	echo delete_medico($id);
 }
 
-header("Location: medicos_control.php");
+header("Location: control.php");
 
 ?>

@@ -1,15 +1,16 @@
 <?php 
 
-//require $path . '/app/controller/medicos_controller.php';
+
+require 'model.php';
 
 // $__PATH = dirname(dirname(__FILE__));
-require 'medicos_model.php';
+
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Médicos - Comtrol</title>
+	<title>Médicos - Lista</title>
 
 	<style type="text/css">
 	/*	body {
@@ -26,11 +27,7 @@ require 'medicos_model.php';
 
 <table>
 
-<h3> Control Medicos </h3>
-
-<form method="link" action="medicos_add.php">
-	<input type="submit" value="Agregar">
-</form>
+<h3> Vista de Medicos </h3>
 
 <table>
 	<thead>
@@ -42,7 +39,6 @@ require 'medicos_model.php';
 			<th>Latitud</th>
 			<th>Altitud</th>
 			<th>Longitud</th>
-			<th>Opcion</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -54,7 +50,6 @@ require 'medicos_model.php';
 
 				// output data of each row
 				while($row = $result->fetch_assoc()) {
-					$id = $row["id_medico"];
 					echo "<tr>";
 						echo "<td>" . $row["nombre"] 	. "</td>";
 						echo "<td>" . $row["apellido"] 	. "</td>";
@@ -63,7 +58,6 @@ require 'medicos_model.php';
 						echo "<td>" . $row["latitud"] 	. "</td>";
 						echo "<td>" . $row["altitud"] 	. "</td>";
 						echo "<td>" . $row["longitud"] 	. "</td>";
-						echo "<td> <a href='medicos_view_details.php?id={$id}' >Ver</a> | <a href='medicos_edit.php?id={$id}' >Editar</a> | <a href='medicos_controller.php?id={$id}&op=D' >Borrar</a></td>";
 					echo "</tr>";
 				}
 			} else {
