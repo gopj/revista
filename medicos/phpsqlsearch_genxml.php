@@ -1,5 +1,5 @@
 <?php  
-require("phpsqlsearch_dbinfo.php");
+require("phpsqlajax_dbinfo.php");
 // Get parameters from URL
 $center_lat = $_GET["lat"];
 $center_lng = $_GET["lng"];
