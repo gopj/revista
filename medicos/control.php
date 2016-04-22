@@ -9,7 +9,7 @@ require 'model.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Médicos - Comtrol</title>
+	<title>Médicos - Control</title>
 
 	<style type="text/css">
 	/*	body {
