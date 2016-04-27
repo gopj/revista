@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //require $path . '/app/controller/medicos_controller.php';
 
@@ -28,9 +28,7 @@ require 'model.php';
 
 <h3> Control Medicos </h3>
 
-<form method="link" action="add.php">
-	<input type="submit" value="Agregar">
-</form>
+<a href="add.php"> Agregar </a>
 
 <table>
 	<thead>
@@ -39,13 +37,14 @@ require 'model.php';
 			<th>Apellido</th>
 			<th>Correo</th>
 			<th>Teléfono</th>
+			<th>Dirección</th>
 			<th>Latitud</th>
 			<th>Longitud</th>
 			<th>Opcion</th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php 
+		<?php
 			if (medicos_all_results() != "") {
 
 				$result = medicos_all_results();
@@ -59,8 +58,9 @@ require 'model.php';
 						echo "<td>" . $row["apellido"] 	. "</td>";
 						echo "<td>" . $row["correo"] 	. "</td>";
 						echo "<td>" . $row["telefono"] 	. "</td>";
-						echo "<td>" . @$row["latitud"] 	. "</td>";
-						echo "<td>" . @$row["longitud"] 	. "</td>";
+						echo "<td>" . $row["direccion"] 	. "</td>";
+						echo "<td>" . @$row["lat"] 	. "</td>";
+						echo "<td>" . @$row["lng"] 	. "</td>";
 						echo "<td> <a href='view_details.php?id={$id}' >Ver</a> | <a href='edit.php?id={$id}' >Editar</a> | <a href='controller.php?id={$id}&op=D' >Borrar</a></td>";
 					echo "</tr>";
 				}
