@@ -4,43 +4,52 @@
 
 // $__PATH = dirname(dirname(__FILE__));
 require 'model.php';
-
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Médicos - Control</title>
 
-	<style type="text/css">
-	/*	body {
-				background-color:black;
-				color:#259b24;
-				font-family: "Consolas";
+	<?php include '../layouts/libraries.php'; ?>
 
-			}
-	*/
-	</style>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			$('#control_medicos').DataTable();
+		} );
+	</script>
+
 </head>
 <body>
 
+<?php include '../layouts/header.php'; ?>
 
-<table>
+<div class="container">
 
-<h3> Control Medicos </h3>
+<div class="row">
+	<div class="col-sm-12">
+		<br>
+		<div class="row">
+			<div class="col-xs-8 col-sm-6">
+				<h2> Control Medicos </h2>
+			</div>
+			<div class="col-xs-8 col-sm-6" align="right">
+				<a  href="add.php" class="btn btn-primary btn-lg" role="button"> Agregar </a>
+			</div>
+		</div>
+	</div>
+</div>
 
-<a href="add.php"> Agregar </a>
-
-<table>
+<table id="control_medicos" class="table table-striped table-bordered" cellspacing="0" width="100%">
 	<thead>
 		<tr>
+			<th>#</th>
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Correo</th>
 			<th>Teléfono</th>
 			<th>Dirección</th>
-			<th>Latitud</th>
-			<th>Longitud</th>
-			<th>Opcion</th>
+			<th>Imágen</th>
+			<th>Opciones</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -54,14 +63,14 @@ require 'model.php';
 				while($row = $result->fetch_assoc()) {
 					$id = $row["id_medico"];
 					echo "<tr>";
+						echo "<td>" . $id 	. "</td>";
 						echo "<td>" . $row["nombre"] 	. "</td>";
 						echo "<td>" . $row["apellido"] 	. "</td>";
 						echo "<td>" . $row["correo"] 	. "</td>";
 						echo "<td>" . $row["telefono"] 	. "</td>";
 						echo "<td>" . $row["direccion"] 	. "</td>";
-						echo "<td>" . @$row["lat"] 	. "</td>";
-						echo "<td>" . @$row["lng"] 	. "</td>";
-						echo "<td> <a href='view_details.php?id={$id}' >Ver</a> | <a href='edit.php?id={$id}' >Editar</a> | <a href='controller.php?id={$id}&op=D' >Borrar</a></td>";
+						echo "<td>" . @$row["imagen"] 	. "</td>";
+						echo "<td align='center'> <a href='view_details.php?id={$id}' class='btn btn-primary btn-xs' role='button'>Ver</a>  <a href='edit.php?id={$id}' class='btn btn-primary btn-xs' role='button'>Editar</a>  <a href='controller.php?id={$id}&op=D' class='btn btn-danger btn-xs' role='button' >Borrar</a></td>";
 					echo "</tr>";
 				}
 			} else {
@@ -72,5 +81,6 @@ require 'model.php';
 	</tbody>
 </table>
 
+</div>
 </body>
 </html>

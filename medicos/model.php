@@ -28,7 +28,7 @@
 
 		}
 
-		function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng){
+		function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng, $image){
 			$conn = conn();
 
 			$sql = "INSERT INTO revista.medicos (
@@ -38,7 +38,8 @@
 						telefono,
 						direccion,
 						lat,
-						lng
+						lng,
+						imagen
 					)
 
 					VALUES (
@@ -48,7 +49,8 @@
 						'{$telefono}',
 						'{$direccion}',
 						{$lat},
-						{$lng}
+						{$lng},
+						'{$image}'
 					);
 
 				   ";
@@ -59,7 +61,7 @@
 			return "ok";
 		}
 
-		function edit_medico($id){
+		function show_medico($id){
 			$conn = conn();
 
 			$sql = "SELECT * FROM revista.medicos WHERE id_medico={$id}; ";
@@ -68,7 +70,7 @@
 			return $result;
 		}
 
-		function update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng){
+		function update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng, $image){
 			$conn = conn();
 
 
@@ -79,7 +81,8 @@
 						telefono 	= '{$telefono}',
 						direccion 	= '{$direccion}',
 						lat 		= {$lat},
-						lng 		= {$lng}
+						lng 		= {$lng},
+						imagen 		= '{$image}'
 
 					WHERE id_medico={$id}; ";
 
@@ -91,8 +94,15 @@
 		function delete_medico($id){
 			$conn = conn();
 
-			$sql = "DELETE FROM revista.medicos WHERE id_medico={$id}; ";
+			$sql = "SELECT * FROM revista.medicos where id_medico={$id};";
 			$result = $conn->query($sql);
+
+			while ($row = @mysqli_fetch_assoc($result)) {
+				$result = $row["imagen"];
+			}
+
+			$sql = "DELETE FROM revista.medicos WHERE id_medico={$id}; ";
+			$conn->query($sql);
 
 
 			return $result;

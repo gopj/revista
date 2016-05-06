@@ -1,4 +1,6 @@
 var geocoder = new google.maps.Geocoder();
+var lat = 19.088052;
+var lng = -104.297455;
 
 function geocodePosition(pos) {
 	geocoder.geocode({
@@ -32,60 +34,67 @@ function updateMarkerAddress(str) {
   document.getElementById('address').innerHTML = str;
 }
 
-function initLat(){
-	var lat = 19.088052;
+function initLat(lat){
 
-	if (init == "e") {
+	if (init != "a") {
 		lat = document.getElementById('dbLat').value;
 	}
 
 	return lat;
-
 }
 
-function initLng(){
-	var lng = -104.297455;
+function initLng(lng){
 
-		if (init == "e") {
-		lat = document.getElementById('dbLat').value;
+	if (init != "a") {
+		lng = document.getElementById('dbLng').value;
 	}
 
 	return lng;
+}
 
+function draggable_option(){
+	var draggable = true;
+
+	if (init == "v") {
+		draggable = false;
+	} 
+
+	return draggable;
 }
 
 function initialize() {
-  var latLng = new google.maps.LatLng(initLat(), initLng()); // Cordenadas Manzanillo, Valle de las Garzas
-  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
-	zoom: 15,
-	center: latLng,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  var marker = new google.maps.Marker({
-	position: latLng,
-	title: 'Point A',
-	map: map,
-	draggable: true
-  });
+	var latLng = new google.maps.LatLng(initLat(lat), initLng(lng)); // Cordenadas Manzanillo, Valle de las Garzas
+	var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+		zoom: 15,
+		center: latLng,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+  	});
 
-  // Update current position info.
-  updateMarkerPosition(latLng);
-  geocodePosition(latLng);
+	var marker = new google.maps.Marker({
+		position: latLng,
+		title: 'Point A',
+		map: map,
+		draggable: draggable_option() //Draggable False True
+	});
 
-  // Add dragging event listeners.
-  google.maps.event.addListener(marker, 'dragstart', function() {
-	updateMarkerAddress('Dragging...');
-  });
+	// Update current position info.
+	updateMarkerPosition(latLng);
+	geocodePosition(latLng);
 
-  google.maps.event.addListener(marker, 'drag', function() {
-	updateMarkerStatus('Dragging...');
-	updateMarkerPosition(marker.getPosition());
-  });
+	// Add dragging event listeners.
+	google.maps.event.addListener(marker, 'dragstart', function() {
+		updateMarkerAddress('Dragging...');
+	});
 
-  google.maps.event.addListener(marker, 'dragend', function() {
-	updateMarkerStatus('Drag ended');
-	geocodePosition(marker.getPosition());
-  });
+	google.maps.event.addListener(marker, 'drag', function() {
+		updateMarkerStatus('Dragging...');
+		updateMarkerPosition(marker.getPosition());
+	});
+
+	google.maps.event.addListener(marker, 'dragend', function() {
+		updateMarkerStatus('Drag ended');
+		geocodePosition(marker.getPosition());
+	});
 }
 
 

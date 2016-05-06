@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `revista`
 --
-DROP DATABASE `revista`;
+DROP DATABASE `revista` IF EXISTS;
 CREATE DATABASE IF NOT EXISTS `revista` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `revista`;
 

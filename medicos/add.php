@@ -37,29 +37,37 @@
 
 <h1>Agregar</h1>
 
-<form action="controller.php?op=A" method="POST" >
+<form action="controller.php?op=A" method="POST" enctype="multipart/form-data">
+	Imagen 		<input type="file" name="image" id="image" />
 	Nombre: 	<input type="text" name="nombre" />
 	Apellido: 	<input type="text" name="apellido" />
 	Correo:		<input type="text" name="correo" />
 	Teléfono: 	<input type="text" name="telefono" />
 	Dirección: 	<input type="text" name="direccion" />
-	Latitud: 	<input type='text' id='markerLat' name="lat" />
-	Longitud:	<input type='text' id='markerLng' name="lng" />
+	Latitud: 	<input type="text" name="lat" id="markerLat" disabled />
+	Longitud:	<input type="text" name="lng" id="markerLng" disabled />
 
-	 <div id="mapCanvas"></div>
-  <div id="infoPanel">
-    <b>Marker status:</b>
-    <div id="markerStatus"><i>Click and drag the marker.</i></div>
-    <b>Current position:</b>
-    <div id="info"></div>
-    <b>Closest matching address:</b>
-    <div id="address"></div>
-  </div>
+	<div id="mapCanvas"></div>
+	
+	<div id="infoPanel">
+		<b>Marker status:</b>
+			<div id="markerStatus"><i>Click and drag the marker.</i></div>
+		<b>Current position:</b>
+			<div id="info"></div>
+		<b>Closest matching address:</b>
+			<div id="address"></div>
+	</div>
 
 	<input type="submit" value="Guardar" />
 
 </form >
 
+<a href="control.php"> Cancelar </a>
+
+
+<?php 
+include '../layouts.php';
+?>
 
 </body>
 </html>
