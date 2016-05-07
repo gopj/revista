@@ -53,49 +53,67 @@
 
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input type="text" class="form-control" id="nombre" placeholder="Choche">
+		<input type="text" name="image" class="form-control" id="nombre" placeholder="Choche">
 	</div>
+
 	<div class="form-group">
 		<label for="apellido">Apellido</label>
-		<input type="text" class="form-control" id="apellido" placeholder="Bronco">
+		<input type="text" name="apellido" class="form-control" id="apellido" placeholder="Bronco">
 	</div>
 		<div class="form-group">
 		<label for="email">Email</label>
-		<input type="email" class="form-control" id="email" placeholder="choche@bronco.com">
+		<input type="email" name="email" class="form-control" id="email" placeholder="choche@bronco.com">
 	</div>
-	</div>
-		<div class="form-group">
+
+	<div class="form-group">
 		<label for="telefono">Teléfono</label>
-		<input type="tel" class="form-control" id="telefono" placeholder="3134332345">
+		<input type="tel" name="telefono" class="form-control" id="telefono" placeholder="3134332345">
 	</div>
 
-	</div>
-	Imagen 		<input type="file" name="image" id="image" />
-	Nombre: 	<input type="text" name="nombre" />
-	Apellido: 	<input type="text" name="apellido" />
-	Correo:		<input type="text" name="correo" />
-	Teléfono: 	<input type="text" name="telefono" />
-	Dirección: 	<input type="text" name="direccion" />
-	Latitud: 	<input type="text" name="lat" id="markerLat" hidden />
-	Longitud:	<input type="text" name="lng" id="markerLng" hidden />
-
-	<div id="mapCanvas"></div>
-	
-	<div id="infoPanel">
-		<b>Marker status:</b>
-			<div id="markerStatus"><i>Click and drag the marker.</i></div>
-		<b>Current position:</b>
-			<div id="info"></div>
-		<b>Closest matching address:</b>
-			<div id="address"></div>
+	<div class="form-group">
+		<label for="direccion">Dirección</label>
+		<input type="text" name="direccion" class="form-control" id="direccion" placeholder="Av. Siempre vida #1234">
 	</div>
 
-	<input type="submit" value="Guardar" />
+
+
+ 	<input type="text" name="lat" id="markerLat" hidden />
+	<input type="text" name="lng" id="markerLng" hidden />
+
+	<div class="form-group">
+		<div id="mapCanvas" class="form-control"> </div>
+
+
+		<div id="infoPanel">
+			<b>Estado del marcador:</b>
+				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
+			<b>Posición actual:</b>
+				<div id="info"></div>
+			<b>Dirección mas cercana:</b>
+				<div id="address"></div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-4">
+				<br>
+				<a href="control.php" class="btn btn-danger btn-lg"> Cancelar </a>
+				<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
+				<br>
+			</div>
+		</div>
+
+
+	</div>
+
+
 
 </form >
 
-<a href="control.php"> Cancelar </a>
 
 </div>
+
+<?php include '../layouts/footer.php'; ?>
+
+
 </body>
 </html>

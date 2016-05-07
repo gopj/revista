@@ -61,8 +61,8 @@ $lng = getLng($id);
 		Correo: 	<input type="text" name="correo" 	value="<?php echo $row['correo'] ?>" />
 		Teléfono: 	<input type="text" name="telefono" 	value="<?php echo $row['telefono'] ?>" />
 		Dirección: 	<input type="text" name="direccion"	value="<?php echo $row['direccion'] ?>" />
-		Latitud: 	<input type="text" name="lat" 		id="markerLat" hidden />
-		Longitud: 	<input type="text" name="lng"		id="markerLng" hidden />
+				 	<input type="text" name="lat" 		id="markerLat" hidden />
+				 	<input type="text" name="lng"		id="markerLng" hidden />
 		Imágen: 	<input type="text" name="imagen" 	value="<?php echo $row['imagen'] ?>" />
 
 	<?php } ?>

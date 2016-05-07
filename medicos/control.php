@@ -70,17 +70,17 @@ require 'model.php';
 						echo "<td>" . $row["telefono"] 	. "</td>";
 						echo "<td>" . $row["direccion"] 	. "</td>";
 						echo "<td>" . @$row["imagen"] 	. "</td>";
-						echo "<td align='center'> 
-									<a href='view_details.php?id={$id}' 
-									class='btn btn-primary btn-xs' 
-									role='button'>Ver</a>  
-									
-									<a href='edit.php?id={$id}' 
-									class='btn btn-primary btn-xs' 
+						echo "<td align='center'>
+									<a href='view_details.php?id={$id}'
+									class='btn btn-primary btn-xs'
+									role='button'>Ver</a>
+
+									<a href='edit.php?id={$id}'
+									class='btn btn-primary btn-xs'
 									role='button'>Editar</a>
-									
-									<a href='controller.php?id={$id}&op=D' 
-									class='btn btn-danger btn-xs' 
+
+									<a href='controller.php?id={$id}&op=D'
+									class='btn btn-danger btn-xs'
 									role='button' >Borrar</a>
 								</td>";
 					echo "</tr>";
@@ -94,5 +94,8 @@ require 'model.php';
 </table>
 
 </div>
+
+<?php include '../layouts/footer.php'; ?>
+
 </body>
 </html>
