@@ -81,7 +81,9 @@
 	<input type="text" name="lng" id="markerLng" hidden />
 
 	<div class="form-group">
-		<div id="mapCanvas" class="form-control"> </div>
+
+
+		<div class="full_page_photo"><div id="map"></div></div>
 
 
 		<div id="infoPanel">
@@ -90,7 +92,7 @@
 			<b>Posición actual:</b>
 				<div id="info"></div>
 			<b>Dirección mas cercana:</b>
-				<div id="address"></div>
+				<div id="adress"></div>
 		</div>
 
 		<div class="form-group">

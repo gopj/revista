@@ -31,7 +31,9 @@ function updateMarkerPosition(latLng) {
 }
 
 function updateMarkerAddress(str) {
-  document.getElementById('address').innerHTML = str;
+  document.getElementById('adress').innerHTML = str;
+
+  document.getElementById('direccion').value = str;
 }
 
 function initLat(lat){
@@ -57,14 +59,14 @@ function draggable_option(){
 
 	if (init == "v") {
 		draggable = false;
-	} 
+	}
 
 	return draggable;
 }
 
 function initialize() {
 	var latLng = new google.maps.LatLng(initLat(lat), initLng(lng)); // Cordenadas Manzanillo, Valle de las Garzas
-	var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+	var map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
 		center: latLng,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -83,16 +85,16 @@ function initialize() {
 
 	// Add dragging event listeners.
 	google.maps.event.addListener(marker, 'dragstart', function() {
-		updateMarkerAddress('Dragging...');
+		updateMarkerAddress('Arrastrando...');
 	});
 
 	google.maps.event.addListener(marker, 'drag', function() {
-		updateMarkerStatus('Dragging...');
+		updateMarkerStatus('Arrastrando...');
 		updateMarkerPosition(marker.getPosition());
 	});
 
 	google.maps.event.addListener(marker, 'dragend', function() {
-		updateMarkerStatus('Drag ended');
+		updateMarkerStatus('Arrastrado finalizado');
 		geocodePosition(marker.getPosition());
 	});
 }
