@@ -7,6 +7,8 @@ $id = $_GET["id"];
 $lat = getLat($id);
 $lng = getLng($id);
 
+$show_image = get_image($id);
+
 ?>
 
 <!DOCTYPE html>
@@ -69,9 +71,10 @@ $(function() {
 		<a class="kv-anchor" title="Permalink" href="#editar" data-toggle="tooltip">
 			<span class="glyphicon glyphicon-list-alt"></span>
 		</a> Editar <small></small>
+
+		<img src="<?= '../' . $show_image ?>" height="100" width="100" class="img-circle">
 	</h1>
 </div>
-
 
 <form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 

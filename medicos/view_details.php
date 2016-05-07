@@ -7,6 +7,9 @@ $id = $_GET["id"];
 $lat = getLat($id);
 $lng = getLng($id);
 
+$show_image = get_image($id);
+$name = get_name($id);
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +17,8 @@ $lng = getLng($id);
 <head>
 	<title> Medicos - Vista</title>
 </head>
+<?php include '../layouts/libraries.php'; ?>
+
 
 <script type="text/javascript">
 	var init = "v";
@@ -21,14 +26,9 @@ $lng = getLng($id);
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
 <script src="/revista/medicos/maps/function_maps.js" type="text/javascript"></script>
-<script src="/revista/js/jquery-1.9.0.min.js" type="text/javascript"></script>
+
 
 <style>
-	#mapCanvas {
-		width: 500px;
-		height: 400px;
-		float: left;
-	}
 
 	#infoPanel {
 		float: left;
@@ -41,43 +41,84 @@ $lng = getLng($id);
 </style>
 
 <body>
+<?php include '../layouts/header.php'; ?>
 
+<div class="container">
 
-<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
+<form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 
+	<?php
+	$result = show_medico($id);
+	while ($row = $result->fetch_assoc()){
+	?>
 
-<?php
-$result = show_medico($id);
-while ($row = $result->fetch_assoc()){
-?>
+<div class="main">
+	<section class="hgroup centered">
+		<div class="container">
+			<ul class="breadcrumb pull-right">
+				<li><a href="control.php">Inicio</a> </li>
+				<li class="active">Detalles de Médico</li>
+			</ul>
+		</div>
+	</section>
+	<section class="service_teasers">
+		<div class="container">
+			<div class="service_teaser">
+				<div class="row">
+					<div class="service_photo col-sm-4 col-md-4">
+						<figure style="background-image:url(<?= '../' . $show_image ?>)"></figure>
+					</div>
+					<div class="service_details col-sm-8 col-md-8">
+						<h2 class="section_header skincolored"><b><?= $row['nombre'] ?></b> <?= $row['apellido'] ?> <small>{Especialidad}</small></h2>
 
-<h1> <?= $row["nombre"] . " " .  $row["apellido"] ?> </h1>
+						<p>
+							<strong>Correo: </strong> <?= $row['correo']  ?> <br>
+							<strong>Télefono: </strong> <?= $row['telefono']  ?> <br>
+							<strong>Dirección: </strong> <?= $row['direccion']  ?> <br>
+						</p>
 
-	<img src="<?= '..'.$row['imagen'] ?> " height="100" width="100">
-
-	Nombre: 	<input type="text" name="nombre" 	value="<?php echo $row['nombre'] ?>" 	disabled />
-	Apellido: 	<input type="text" name="apellido" 	value="<?php echo $row['apellido'] ?>"	disabled />
-	Correo: 	<input type="text" name="correo" 	value="<?php echo $row['correo'] ?>" 	disabled />
-	Teléfono: 	<input type="text" name="telefono" 	value="<?php echo $row['telefono'] ?>" 	disabled />
-	Dirección: 	<input type="text" name="direccion"	value="<?php echo $row['direccion'] ?>" disabled />
-	Latitud: 	<input type="text" name="lat" 		id="markerLat" hidden />
-	Longitud: 	<input type="text" name="lng"		id="markerLng" hidden />
-	Imágen: 	<input type="text" name="imagen" 	value="<?php echo $row['imagen'] ?>" 	disabled />
-
-<?php } ?>
-
-<div id="mapCanvas"></div>
-<div id="infoPanel">
-	<b>Marker status:</b>
-		<div id="markerStatus"><i>Click and drag the marker.</i></div>
-	<b>Current position:</b>
-		<div id="info"></div>
-	<b>Closest matching address:</b>
-		<div id="address"></div>
+					</div>
+			   </div>
+			</div>
+		</div>
+	</section>
 </div>
 
-<a href="control.php"> Regresar </a>
+
+
+
+		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
+		<input type="text" name="lat" 	id="markerLat" hidden />
+		<input type="text" name="lng"	id="markerLng" hidden />
+
+
+		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
+		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
+
+	<?php } ?>
+
+	<div class="form-group">
+
+
+		<div class="full_page_photo"><div id="map"></div></div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-4">
+				<br>
+				<a href="control.php" class="btn btn-success btn-lg"> Regresar </a>
+
+				<br>
+			</div>
+		</div>
+
+
+	</div>
+
+</form >
+
+</div>
+
+<?php include '../layouts/footer.php'; ?>
 
 </body>
 </html>

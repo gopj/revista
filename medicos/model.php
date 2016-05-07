@@ -138,6 +138,36 @@
 			return round($lng, 10); //decimal
 		};
 
+		function get_image($id){
+			$conn = conn();
+
+			$imagen = "";
+
+			$sql = " SELECT imagen FROM revista.medicos WHERE id_medico={$id}; ";
+			$result = $conn->query($sql);
+
+			while ($row = mysqli_fetch_assoc($result)) {
+				$imagen = @$row["imagen"];
+			}
+
+			return $imagen;
+		};
+
+		function get_name($id){
+			$conn = conn();
+
+			$name = "";
+
+			$sql = " SELECT nombre FROM revista.medicos WHERE id_medico={$id}; ";
+			$result = $conn->query($sql);
+
+			while ($row = mysqli_fetch_assoc($result)) {
+				$name = $row["nombre"];
+			}
+
+			return $name;
+		};
+
 
 		$conn->close();
 ?>
