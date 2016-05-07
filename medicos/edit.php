@@ -15,13 +15,21 @@ $lng = getLng($id);
 	<title> Medicos - Editar</title>
 </head>
 
+<?php include '../layouts/libraries.php'; ?>
+
 <script type="text/javascript">
 	var init = "e";
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
 <script src="/revista/medicos/maps/function_maps.js" type="text/javascript"></script>
-<script src="/revista/js/jquery-1.9.0.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+$(document).on('ready', function() {
+	$("#image").fileinput({showCaption: false});
+});
+</script>
 
 <style>
 	#mapCanvas {
@@ -42,10 +50,21 @@ $lng = getLng($id);
 
 <body>
 
-<h3>Editar</h3>
+<?php include '../layouts/header.php'; ?>
 
-<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
+<div class="container">
+
+<div class="page-header bs-header">
+	<h1 id="editar" class="text">
+		<a class="kv-anchor" title="Permalink" href="#editar" data-toggle="tooltip">
+			<span class="glyphicon glyphicon glyphicon-plus"></span>
+		</a> Editar <small></small>
+	</h1>
+</div>
+
+
+<input type="text" id="dbLat" value="<?= $lat; ?>"  />
+<input type="text" id="dbLng" value="<?= $lng; ?>"  />
 
 <form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 
@@ -55,34 +74,75 @@ $lng = getLng($id);
 	?>
 		<input type="text" name="id" value="<?php echo $row['id_medico'] ?>" hidden />
 
-		Imagen: 	<input type="file" name="image" 	id="image" />
-		Nombre: 	<input type="text" name="nombre" 	value="<?php echo $row['nombre'] ?>" />
-		Apellido: 	<input type="text" name="apellido" 	value="<?php echo $row['apellido'] ?>"/>
-		Correo: 	<input type="text" name="correo" 	value="<?php echo $row['correo'] ?>" />
-		Teléfono: 	<input type="text" name="telefono" 	value="<?php echo $row['telefono'] ?>" />
-		Dirección: 	<input type="text" name="direccion"	value="<?php echo $row['direccion'] ?>" />
-				 	<input type="text" name="lat" 		id="markerLat" hidden />
-				 	<input type="text" name="lng"		id="markerLng" hidden />
-		Imágen: 	<input type="text" name="imagen" 	value="<?php echo $row['imagen'] ?>" />
+		<label class="control-label">Selecciona imágen</label>
+		<input id="image" name="image" type="file" multiple class="file-loading">
+
+		<div class="form-group">
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $row['nombre'] ?>">
+		</div>
+
+		<div class="form-group">
+			<label for="apellido">Apellido</label>
+			<input type="text" name="apellido" class="form-control" id="apellido" value="<?php echo $row['apellido'] ?>">
+		</div>
+			<div class="form-group">
+			<label for="correo">Correo</label>
+			<input type="correo" name="correo" class="form-control" id="correo" value="<?php echo $row['correo'] ?>">
+		</div>
+
+		<div class="form-group">
+			<label for="telefono">Teléfono</label>
+			<input type="tel" name="telefono" class="form-control" id="telefono" value="<?php echo $row['telefono'] ?>">
+		</div>
+
+		<div class="form-group">
+			<label for="direccion">Dirección</label>
+			<input type="text" name="direccion" class="form-control" id="direccion" value="<?php echo $row['direccion'] ?>" >
+		</div>
+
+		<div class="form-group">
+			<label for="imagen">Ruta de imágen</label>
+			<input type="text" name="imagen" class="form-control" id="imagen" value="<?php echo $row['imagen'] ?>">
+		</div>
+
+		<input type="text" name="lat" 	id="markerLat"  />
+		<input type="text" name="lng"	id="markerLng"  />
 
 	<?php } ?>
 
-	<div id="mapCanvas"></div>
-	<div id="infoPanel">
-		<b>Marker status:</b>
-			<div id="markerStatus"><i>Click and drag the marker.</i></div>
-		<b>Current position:</b>
-			<div id="info"></div>
-		<b>Closest matching address:</b>
-			<div id="address"></div>
+	<div class="form-group">
+
+
+		<div class="full_page_photo"><div id="map"></div></div>
+
+
+		<div id="infoPanel">
+			<b>Estado del marcador:</b>
+				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
+			<b>Posición actual:</b>
+				<div id="info"></div>
+			<b>Dirección mas cercana:</b>
+				<div id="adress"></div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-5 col-sm-4">
+				<br>
+				<a href="control.php" class="btn btn-danger btn-lg"> Cancelar </a>
+				<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
+				<br>
+			</div>
+		</div>
+
+
 	</div>
-
-
-    <input type="submit" value="Guardar" />
 
 </form >
 
-<a href="control.php"> Cancelar </a>
+</div>
+
+<?php include '../layouts/footer.php'; ?>
 
 </body>
 </html>

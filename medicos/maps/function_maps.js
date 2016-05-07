@@ -26,14 +26,32 @@ function updateMarkerPosition(latLng) {
 	].join(', ');
 
 	// INPUTS
-	document.getElementById('markerLat').value = latLng.lat();
-	document.getElementById('markerLng').value = latLng.lng();
+	// Only 10 decimals
+	var lat_dec =  toFixed(latLng.lat(), 10);
+	var lng_dec =  toFixed(latLng.lng(), 10);
+
+	document.getElementById('markerLat').value = lat_dec;
+	document.getElementById('markerLng').value = lng_dec;
+}
+
+function toFixed(value, precision) {
+    var power = Math.pow(10, precision || 0);
+    return String(Math.round(value * power) / power);
 }
 
 function updateMarkerAddress(str) {
-  document.getElementById('adress').innerHTML = str;
 
-  document.getElementById('direccion').value = str;
+	var latMarker = document.getElementById('markerLat').value;
+	var lngMarker = document.getElementById('markerLng').value;
+
+	var lat = document.getElementById('dbLat').value;
+	var lng = document.getElementById('dbLng').value;
+
+	document.getElementById('adress').innerHTML = str;
+
+	if ( (lat != latMarker ) ||  (lng != lngMarker) ) {
+		document.getElementById('direccion').value = str;
+	}
 }
 
 function initLat(lat){

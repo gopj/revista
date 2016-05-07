@@ -8,10 +8,11 @@
 <script type="text/javascript" src="../js/restart_theme.js"></script>
 <script type="text/javascript" src="../js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="../js/dataTables.bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/fileinput/fileinput.min.js"></script>
 
 
 <link rel="stylesheet" type="text/css" href="../css/style.css" />
 <link rel="stylesheet" type="text/css" href="../css/dataTables.bootstrap.min.css" />
-
+<link rel="stylesheet" type="text/css" href="../css/fileinput.min.css" />
 
 

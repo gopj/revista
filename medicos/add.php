@@ -17,6 +17,12 @@
 	var init = "a";
 </script>
 
+<script type="text/javascript">
+$(document).on('ready', function() {
+    $("#image").fileinput({showCaption: false});
+});
+</script>
+
 <style>
 	#mapCanvas {
 		width: 500px;
@@ -41,19 +47,25 @@
 
 <div class="container">
 
-<h2>Agregar</h2>
+<div class="page-header bs-header">
+	<h1 id="agregar" class="text">
+		<a class="kv-anchor" title="Permalink" href="#agregar" data-toggle="tooltip">
+			<span class="glyphicon glyphicon glyphicon-plus"></span>
+		</a> Agregar <small></small>
+	</h1>
+</div>
+
+
 
 <form action="controller.php?op=A" method="POST" enctype="multipart/form-data">
 
-	<div class="form-group">
-		<label for="image">Imágen</label>
-		<input type="file" name="image" id="image">
-		<p class="help-block">Carga una imágen.</p>
-	</div>
+
+	<label class="control-label">Slecciona imágen</label>
+	<input id="image" name="image" type="file" multiple class="file-loading">
 
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input type="text" name="image" class="form-control" id="nombre" placeholder="Choche">
+		<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Choche">
 	</div>
 
 	<div class="form-group">
@@ -61,8 +73,8 @@
 		<input type="text" name="apellido" class="form-control" id="apellido" placeholder="Bronco">
 	</div>
 		<div class="form-group">
-		<label for="email">Email</label>
-		<input type="email" name="email" class="form-control" id="email" placeholder="choche@bronco.com">
+		<label for="correo">Email</label>
+		<input type="correo" name="correo" class="form-control" id="correo" placeholder="choche@bronco.com">
 	</div>
 
 	<div class="form-group">
