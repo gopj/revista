@@ -120,7 +120,7 @@
 				$lat = $row["lat"];
 			}
 
-			return $lat;
+			return round($lat, 10); //decimal
 		};
 
 		function getLng($id){
@@ -135,7 +135,7 @@
 				$lng = $row["lng"];
 			}
 
-			return $lng;
+			return round($lng, 10); //decimal
 		};
 
 

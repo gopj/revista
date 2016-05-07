@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
 $(document).on('ready', function() {
-    $("#image").fileinput({showCaption: false});
+	$("#image").fileinput({showCaption: false});
 });
 </script>
 
@@ -59,9 +59,10 @@ $(document).on('ready', function() {
 
 <form action="controller.php?op=A" method="POST" enctype="multipart/form-data">
 
-
-	<label class="control-label">Slecciona imágen</label>
-	<input id="image" name="image" type="file" multiple class="file-loading">
+	<div class="form-group">
+		<label class="control-label">Selecciona imágen</label>
+		<input id="image" name="image" type="file" multiple class="file-loading">
+	</div>
 
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
@@ -85,9 +86,7 @@ $(document).on('ready', function() {
 	<div class="form-group">
 		<label for="direccion">Dirección</label>
 		<input type="text" name="direccion" class="form-control" id="direccion" placeholder="Av. Siempre vida #1234">
-	</div>
-
-
+	</div>W
 
  	<input type="text" name="lat" id="markerLat" hidden />
 	<input type="text" name="lng" id="markerLng" hidden />

@@ -44,15 +44,24 @@ function updateMarkerAddress(str) {
 	var latMarker = document.getElementById('markerLat').value;
 	var lngMarker = document.getElementById('markerLng').value;
 
-	var lat = document.getElementById('dbLat').value;
-	var lng = document.getElementById('dbLng').value;
+	if (init == "e") {
+		var lat = document.getElementById('dbLat').value;
+		var lng = document.getElementById('dbLng').value;
+	}
+
 
 	document.getElementById('adress').innerHTML = str;
 
 	if ( (lat != latMarker ) ||  (lng != lngMarker) ) {
 		document.getElementById('direccion').value = str;
 	}
+	if (init == "a") {
+		document.getElementById('direccion').value = str;
+	}
+
 }
+
+
 
 function initLat(lat){
 

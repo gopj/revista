@@ -67,14 +67,11 @@ $(function() {
 <div class="page-header bs-header">
 	<h1 id="editar" class="text">
 		<a class="kv-anchor" title="Permalink" href="#editar" data-toggle="tooltip">
-			<span class="glyphicon glyphicon glyphicon-plus"></span>
+			<span class="glyphicon glyphicon-list-alt"></span>
 		</a> Editar <small></small>
 	</h1>
 </div>
 
-
-<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
 
 <form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 
@@ -119,6 +116,10 @@ $(function() {
 		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
 		<input type="text" name="lat" 	id="markerLat" hidden />
 		<input type="text" name="lng"	id="markerLng" hidden />
+
+
+		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
+		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
 
 	<?php } ?>
 
