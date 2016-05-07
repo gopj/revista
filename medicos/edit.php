@@ -24,12 +24,22 @@ $lng = getLng($id);
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
 <script src="/revista/medicos/maps/function_maps.js" type="text/javascript"></script>
 
-
 <script type="text/javascript">
 $(document).on('ready', function() {
 	$("#image").fileinput({showCaption: false});
 });
 </script>
+
+<script type="text/javascript">
+$(function() {
+      $("#defaultimg").click( function()
+           {
+             document.getElementById('imagen').value = "Default";
+           }
+      );
+});
+</script>
+
 
 <style>
 	#mapCanvas {
@@ -63,8 +73,8 @@ $(document).on('ready', function() {
 </div>
 
 
-<input type="text" id="dbLat" value="<?= $lat; ?>"  />
-<input type="text" id="dbLng" value="<?= $lng; ?>"  />
+<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
+<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
 
 <form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 
@@ -102,12 +112,13 @@ $(document).on('ready', function() {
 		</div>
 
 		<div class="form-group">
-			<label for="imagen">Ruta de imágen</label>
+			<label for="imagen">Ruta de imágen</label> <div id="defaultimg" role='button' class='btn btn-danger btn-xs'>Default</div>
 			<input type="text" name="imagen" class="form-control" id="imagen" value="<?php echo $row['imagen'] ?>">
 		</div>
 
-		<input type="text" name="lat" 	id="markerLat"  />
-		<input type="text" name="lng"	id="markerLng"  />
+		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
+		<input type="text" name="lat" 	id="markerLat" hidden />
+		<input type="text" name="lng"	id="markerLng" hidden />
 
 	<?php } ?>
 
