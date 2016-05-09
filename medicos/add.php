@@ -86,7 +86,7 @@ $(document).on('ready', function() {
 	<div class="form-group">
 		<label for="direccion">Dirección</label>
 		<input type="text" name="direccion" class="form-control" id="direccion" placeholder="Av. Siempre vida #1234">
-	</div>W
+	</div>
 
  	<input type="text" name="lat" id="markerLat" hidden />
 	<input type="text" name="lng" id="markerLng" hidden />
