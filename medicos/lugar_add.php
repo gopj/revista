@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> Medicos - Agregar</title>
+	<title> Centro Médico - Agregar</title>
 
 <?php include '../layouts/libraries.php'; ?>
 
@@ -48,39 +48,25 @@ $(document).on('ready', function() {
 <div class="container">
 
 <div class="page-header bs-header">
-	<h1 id="agregar" class="text">
+	<h2 id="agregar" class="text">
 		<a class="kv-anchor" title="Permalink" href="#agregar" data-toggle="tooltip">
-			<span class="glyphicon glyphicon glyphicon-plus"></span>
-		</a> Agregar <small></small>
-	</h1>
+			<span class="glyphicon glyphicon-plus"></span>
+		</a> Agregar - Centro Médico
+	</h2>
 </div>
 
 
 
-<form action="controller.php?op=A" method="POST" enctype="multipart/form-data">
-
-	<div class="form-group">
-		<label class="control-label">Selecciona imágen</label>
-		<input id="image" name="image" type="file" multiple class="file-loading">
-	</div>
+<form action="lugar_controller.php?op=A" method="POST" enctype="multipart/form-data">
 
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Choche">
-	</div>
-
-	<div class="form-group">
-		<label for="apellido">Apellido</label>
-		<input type="text" name="apellido" class="form-control" id="apellido" placeholder="Bronco">
-	</div>
-		<div class="form-group">
-		<label for="correo">Email</label>
-		<input type="correo" name="correo" class="form-control" id="correo" placeholder="choche@bronco.com">
+		<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Clínica Médica">
 	</div>
 
 	<div class="form-group">
 		<label for="telefono">Teléfono</label>
-		<input type="tel" name="telefono" class="form-control" id="telefono" placeholder="3134332345">
+		<input type="tel" name="telefono" class="form-control" id="telefono" placeholder="31414578954">
 	</div>
 
 	<div class="form-group">
@@ -94,7 +80,9 @@ $(document).on('ready', function() {
 	<div class="form-group">
 
 
-		<div class="full_page_photo"><div id="map"></div></div>
+		<div class="full_page_photo">
+			<div id="map"></div>
+		</div>
 
 
 		<div id="infoPanel">

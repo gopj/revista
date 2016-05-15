@@ -1,13 +1,13 @@
 <?php
 
-include 'model.php';
+require 'conn_open.php';
+require 'lugar_model.php';
+require 'conn_close.php';
 
 $id = $_GET["id"];
 
-$lat = getLat($id);
-$lng = getLng($id);
-
-$show_image = get_image($id);
+$lat = get_lugar_lat($id);
+$lng = get_lugar_lng($id);
 
 ?>
 
@@ -30,15 +30,11 @@ $show_image = get_image($id);
 $(document).on('ready', function() {
 	$("#image").fileinput({showCaption: false});
 });
-</script>
 
-<script type="text/javascript">
 $(function() {
-      $("#defaultimg").click( function()
-           {
-             document.getElementById('imagen').value = "Default";
-           }
-      );
+	$("#defaultimg").click( function(){
+		document.getElementById('imagen').value = "Default";
+	});
 });
 </script>
 
@@ -71,34 +67,21 @@ $(function() {
 		<a class="kv-anchor" title="Permalink" href="#editar" data-toggle="tooltip">
 			<span class="glyphicon glyphicon-list-alt"></span>
 		</a> Editar <small></small>
-
-		<img src="<?= '../' . $show_image ?>" height="100" width="100" class="img-circle">
 	</h1>
 </div>
 
-<form action="controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
+<form action="lugar_controller.php?op=E&id=<?=$id?>" method="POST">
 
 	<?php
-	$result = show_medico($id);
+	$result = show_lugar($id);
+
 	while ($row = $result->fetch_assoc()){
 	?>
-		<input type="text" name="id" value="<?php echo $row['id_medico'] ?>" hidden />
-
-		<label class="control-label">Selecciona imágen</label>
-		<input id="image" name="image" type="file" multiple class="file-loading">
+		<input type="text" name="id" value="<?php echo $row['id_lugar'] ?>" hidden />
 
 		<div class="form-group">
 			<label for="nombre">Nombre</label>
 			<input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $row['nombre'] ?>">
-		</div>
-
-		<div class="form-group">
-			<label for="apellido">Apellido</label>
-			<input type="text" name="apellido" class="form-control" id="apellido" value="<?php echo $row['apellido'] ?>">
-		</div>
-			<div class="form-group">
-			<label for="correo">Correo</label>
-			<input type="correo" name="correo" class="form-control" id="correo" value="<?php echo $row['correo'] ?>">
 		</div>
 
 		<div class="form-group">
@@ -111,15 +94,8 @@ $(function() {
 			<input type="text" name="direccion" class="form-control" id="direccion" value="<?php echo $row['direccion'] ?>" >
 		</div>
 
-		<div class="form-group">
-			<label for="imagen">Ruta de imágen</label> <div id="defaultimg" role='button' class='btn btn-danger btn-xs'>Default</div>
-			<input type="text" name="imagen" class="form-control" id="imagen" value="<?php echo $row['imagen'] ?>">
-		</div>
-
-		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
 		<input type="text" name="lat" 	id="markerLat" hidden />
 		<input type="text" name="lng"	id="markerLng" hidden />
-
 
 		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
 		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
@@ -127,11 +103,7 @@ $(function() {
 	<?php } ?>
 
 	<div class="form-group">
-
-
 		<div class="full_page_photo"><div id="map"></div></div>
-
-
 		<div id="infoPanel">
 			<b>Estado del marcador:</b>
 				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>

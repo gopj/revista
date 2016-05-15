@@ -1,6 +1,8 @@
 <?php
 
-require 'model.php';
+require 'conn_open.php';
+require 'medico_model.php';
+require 'conn_close.php';
 
 $op = @$_GET['op'];
 
@@ -79,6 +81,8 @@ function image_name(){
 
 	return $date;
 }
+
+$_SESSION["active_tab"] = 1;
 
 header("Location: control.php");
 
