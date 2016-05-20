@@ -85,8 +85,6 @@ $name = get_name($id);
 </div>
 
 
-
-
 		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
 		<input type="text" name="lat" 	id="markerLat" hidden />
 		<input type="text" name="lng"	id="markerLng" hidden />
