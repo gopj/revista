@@ -10,11 +10,9 @@ $id 		= @$_GET['id'];
 $nombre 	= @$_POST['nombre'];
 $apellido	= @$_POST['apellido'];
 $correo 	= @$_POST['correo'];
-$telefono 	= @$_POST['telefono'];
-$direccion 	= @$_POST['direccion'];
 $image_edit	= @$_POST['imagen'];
 $image_del	= @$_POST['imagen_del'];
-$lugares	= @$_POST['lugares'];
+$lugares	= @$_POST['lugares']; //Lugares ids
 
 $image_dir 	= "/images/medicos/";
 
@@ -57,7 +55,7 @@ if (@$_FILES["image"]["error"] > 0) {
 
 
 if ($op == "A") {
-	//Option A - Add Medico, lugares tabla medico-lugares
+	//Option A - Add Medico, lugares table medico-lugares query add
 	insert_medico($nombre, $apellido, $correo, $image_dir, $lugares);
 } elseif ($op == "E") {
 	//Oprion E - Edit

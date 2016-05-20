@@ -10,10 +10,9 @@
 
 	}
 
-	function insert_medico($nombre, $apellido, $correo, $telefono, $image){
+	function insert_medico($nombre, $apellido, $correo, $image, $lugares){
 		$conn = conn();
 
-		
 		$sql = "INSERT INTO revista.medicos (
 					nombre,
 					apellido,
@@ -29,11 +28,30 @@
 				);
 
 			   ";
-
 		$conn->query($sql);
 
+		$sql = "SELECT * FROM revista.medicos ORDER BY id_medico DESC LIMIT 1; ";
+		$result = $conn->query($sql);
 
-		return "ok";
+		$id_medico = 0;
+		while ($row = mysqli_fetch_assoc($result)) {
+			$id_medico = @$row["id_medico"];
+		}			
+
+		$sql = "INSERT INTO revista.medico_lugares (
+					id_medico,
+					id_lugar
+				) ";
+
+		foreach ($lugares as $value) {
+			$conn->query($sql . "
+				VALUES (
+					{$id_medico},
+					{$value}
+				);
+			");	
+		} 
+	
 	}
 
 	function show_medico($id){
@@ -41,6 +59,22 @@
 
 		$sql = "SELECT * FROM revista.medicos WHERE id_medico={$id}; ";
 		$result = $conn->query($sql);
+
+		/*"	select 
+				m.nombre, 
+				m.apellido, 
+				ml.id_medico, 
+				l.nombre,
+				l.lat, 
+				l.lng
+			from 
+				revista.medicos as m, 
+				revista.lugares as l, 
+				revista.medico_lugares as ml
+			where 
+				m.id_medico = ml.id_medico and 
+				l.id_lugar = ml.id_lugar and 
+				ml.id_medico = 4; ";*/
 
 		return $result;
 	}

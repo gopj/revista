@@ -60,11 +60,6 @@ require 'conn_close.php';
 	</div>
 
 	<div class="form-group">
-		<label for="telefono">Teléfono</label>
-		<input type="tel" name="telefono" class="form-control" id="telefono" placeholder="3134332345">
-	</div>
-
-	<div class="form-group">
 		<label for="basic">Centros Medicos</label>
 
 		<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="lugares[]" id="lugares">
