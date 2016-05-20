@@ -1,6 +1,8 @@
 <?php
-
-
+require 'conn_open.php';
+require 'lugar_model.php';
+require 'medico_model.php';
+require 'conn_close.php';
 ?>
 
 <!DOCTYPE html>
@@ -9,36 +11,15 @@
 	<title> Medicos - Agregar</title>
 
 <?php include '../layouts/libraries.php'; ?>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
-<script src="/revista/medicos/maps/function_maps.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/revista/css/bootstrap-select.min.css" />
 
 <script type="text/javascript">
 	var init = "a";
+
+	$(document).on('ready', function() {
+		$("#image").fileinput({showCaption: false});
+	});
 </script>
-
-<script type="text/javascript">
-$(document).on('ready', function() {
-	$("#image").fileinput({showCaption: false});
-});
-</script>
-
-<style>
-	#mapCanvas {
-		width: 500px;
-		height: 400px;
-		float: left;
-	}
-
-	#infoPanel {
-		float: left;
-		margin-left: 10px;
-	}
-
-	#infoPanel div {
-		margin-bottom: 5px;
-	}
-</style>
 </head>
 
 <body>
@@ -73,10 +54,9 @@ $(document).on('ready', function() {
 		<label for="apellido">Apellido</label>
 		<input type="text" name="apellido" class="form-control" id="apellido" placeholder="Bronco">
 	</div>
-	
-	<div class="form-group">
+		<div class="form-group">
 		<label for="correo">Email</label>
-	<input type="correo" name="correo" class="form-control" id="correo">
+		<input type="correo" name="correo" class="form-control" id="correo" placeholder="choche@bronco.com">
 	</div>
 
 	<div class="form-group">
@@ -85,27 +65,26 @@ $(document).on('ready', function() {
 	</div>
 
 	<div class="form-group">
-		<label for="direccion">Dirección</label>
-		<input type="text" name="direccion" class="form-control" id="direccion" placeholder="Av. Siempre vida #1234">
+		<label for="basic">Centros Medicos</label>
+
+		<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="lugares[]" id="lugares">
+			<optgroup label="Centros Médicos" data-subtext="Selecciona uno o varios">
+				<?php 
+					if (lugares_all_results()) {
+						$result = lugares_all_results();
+
+						while ($row = $result->fetch_assoc()) {
+							$id = $row["id_lugar"];
+							$dir = $row["direccion"];
+							echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+						}
+					}
+				?>
+			</optgroup>
+		</select>
 	</div>
 
- 	<input type="text" name="lat" id="markerLat" hidden />
-	<input type="text" name="lng" id="markerLng" hidden />
-
 	<div class="form-group">
-
-
-		<div class="full_page_photo"><div id="map"></div></div>
-
-
-		<div id="infoPanel">
-			<b>Estado del marcador:</b>
-				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
-			<b>Posición actual:</b>
-				<div id="info"></div>
-			<b>Dirección mas cercana:</b>
-				<div id="adress"></div>
-		</div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-4">
@@ -118,8 +97,6 @@ $(document).on('ready', function() {
 
 
 	</div>
-
-
 
 </form >
 

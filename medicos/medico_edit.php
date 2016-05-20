@@ -5,10 +5,6 @@ include 'lugar_model.php';
 require 'conn_close.php';
 
 $id = $_GET["id"];
-
-$lat = getLat($id);
-$lng = getLng($id);
-
 $show_image = get_image($id);
 
 ?>

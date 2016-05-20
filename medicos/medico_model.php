@@ -10,7 +10,7 @@
 
 	}
 
-	function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng, $image){
+	function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $image){
 		$conn = conn();
 
 		$sql = "INSERT INTO revista.medicos (
@@ -30,8 +30,6 @@
 					'{$correo}',
 					'{$telefono}',
 					'{$direccion}',
-					{$lat},
-					{$lng},
 					'{$image}'
 				);
 
@@ -52,17 +50,16 @@
 		return $result;
 	}
 
-	function update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $lat, $lng, $image){
+	function update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $image){
 		$conn = conn();
+
 
 		$sql = " UPDATE revista.medicos SET
 					nombre 		= '{$nombre}',
 					apellido 	= '{$apellido}',
 					correo 		= '{$correo}',
-					telefono 	= {$telefono},
+					telefono 	= '{$telefono}',
 					direccion 	= '{$direccion}',
-					lat 		= {$lat},
-					lng 		= {$lng},
 					imagen 		= '{$image}'
 
 				WHERE id_medico={$id}; ";
@@ -89,35 +86,6 @@
 		return $result;
 	}
 
-	function getLat($id){
-		$conn = conn();
-
-		$lat = 0;
-
-		$sql = " SELECT lat FROM revista.medicos WHERE id_medico={$id}; ";
-		$result = $conn->query($sql);
-
-		while ($row = mysqli_fetch_assoc($result)) {
-			$lat = $row["lat"];
-		}
-
-		return round($lat, 10); //decimal
-	};
-
-	function getLng($id){
-		$conn = conn();
-
-		$lng = 0;
-
-		$sql = " SELECT lng FROM revista.medicos WHERE id_medico={$id}; ";
-		$result = $conn->query($sql);
-
-		while ($row = mysqli_fetch_assoc($result)) {
-			$lng = $row["lng"];
-		}
-
-		return round($lng, 10); //decimal
-	};
 
 	function get_image($id){
 		$conn = conn();

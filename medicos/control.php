@@ -35,7 +35,7 @@ require 'conn_close.php';
 
 		$(document).ready(function() {
 			$('#control_centros').DataTable( {
-				"language": {
+				"language": 
 					"lengthMenu": "Mostrar _MENU_ registros por página",
 					"zeroRecords": "Nada encontrado - lo siento",
 					"info": "Mostrando página _PAGE_ de _PAGES_",
@@ -57,7 +57,6 @@ require 'conn_close.php';
 
 			document.getElementById('eliminar_span').textContent = nombre + " " + apellido;
 			document.getElementById("a_delete").setAttribute("href", url_delete);
-
 		}
 
 		function delete_lugar(id, nombre){
@@ -65,9 +64,7 @@ require 'conn_close.php';
 
 			document.getElementById('eliminar_span').textContent = nombre;
 			document.getElementById("a_delete").setAttribute("href", url_delete);
-
 		}
-
 	</script>
 
 </head>
@@ -115,7 +112,6 @@ require 'conn_close.php';
 						<th>Apellido</th>
 						<th>Correo</th>
 						<th>Teléfono</th>
-						<th>Dirección</th>
 						<th>Imágen</th>
 						<th width="11%">Opciones</th>
 					</tr>
@@ -138,7 +134,6 @@ require 'conn_close.php';
 									echo "<td>" . $row["apellido"] 	. "</td>";
 									echo "<td>" . $row["correo"] 	. "</td>";
 									echo "<td>" . $row["telefono"] 	. "</td>";
-									echo "<td>" . $row["direccion"] 	. "</td>";
 									echo "<td>" . @$row["imagen"] 	. "</td>";
 									echo "<td valign='center' align='center'>
 												<a href='medico_details.php?id={$id}'
@@ -249,7 +244,7 @@ require 'conn_close.php';
 				¿Deseas eliminar a <strong> <span id="eliminar_span"></span> </strong>?
 			</div>
 			<div class=modal-footer>
-				<button type="button" class="btn btn-default" data-dismiss="modal"> <span class='glyphicon glyphicon-arrow-left'></span> Cancelar</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         		<a href="" id='a_delete' class='btn btn-danger'role='button'><span class='glyphicon glyphicon-remove'></span> Eliminar</a>
 			</div>
 		</div> 
