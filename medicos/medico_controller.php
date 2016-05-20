@@ -16,9 +16,6 @@ $image_edit	= @$_POST['imagen'];
 $image_del	= @$_POST['imagen_del'];
 $lugares	= @$_POST['lugares'];
 
-print_r($lugares);
-die();
-
 $image_dir 	= "/images/medicos/";
 
 //image control
@@ -61,10 +58,10 @@ if (@$_FILES["image"]["error"] > 0) {
 
 if ($op == "A") {
 	//Option A - Add Medico, lugares tabla medico-lugares
-	insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $image_dir, $lugares);
+	insert_medico($nombre, $apellido, $correo, $image_dir, $lugares);
 } elseif ($op == "E") {
 	//Oprion E - Edit
-	update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $image_dir);
+	update_medico($id, $nombre, $apellido, $correo, $image_dir);
 } elseif ($op == "D") {
 	//Option D - Delete
 	$del = delete_medico($id); // ejecución de borrado

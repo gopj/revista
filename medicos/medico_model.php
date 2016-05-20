@@ -18,7 +18,6 @@
 					nombre,
 					apellido,
 					correo,
-					telefono,
 					imagen
 				)
 
@@ -26,7 +25,6 @@
 					'{$nombre}',
 					'{$apellido}',
 					'{$correo}',
-					'{$telefono}',
 					'{$image}'
 				);
 

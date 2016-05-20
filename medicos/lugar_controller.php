@@ -13,14 +13,6 @@ $direccion 	= @$_POST['direccion'];
 $lat 		= @$_POST['lat'];
 $lng 		= @$_POST['lng'];
 
-/*
-echo $nombre . "<br>";
-echo $telefono . "<br>";
-echo $direccion . "<br>";
-echo $lat . "<br>";
-echo $lng . "<br>";
-die();
-*/
 
 
 if ($op == "A") {
@@ -31,6 +23,9 @@ if ($op == "A") {
 	update_lugar($id, $nombre, $telefono, $direccion, $lat, $lng);
 } elseif ($op == "D") {
 	//Option D - Delete
+	echo $op . " " . $id . " <br> delete";
+
+
 	$del = delete_lugar($id); // ejecución de borrado
 }
 

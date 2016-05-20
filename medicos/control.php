@@ -34,23 +34,10 @@ require 'conn_close.php';
 		} );
 
 		$(document).ready(function() {
-			$('#control_centros').DataTable( {
-				"language": 
-					"lengthMenu": "Mostrar _MENU_ registros por página",
-					"zeroRecords": "Nada encontrado - lo siento",
-					"info": "Mostrando página _PAGE_ de _PAGES_",
-					"infoEmpty": "No hay información disponible",
-					"infoFiltered": "(Filtrado de _MAX_ del total de registros)",
-					"search": "Buscar: ",
-					"paginate": {
-						"first": 		"Primero",
-						"last": 		"Último",
-						"next": 		"Siguente",
-						"previous": 	"Anterior"
-					},
-				}
-			} );
-		} );
+			$('#control_centros').DataTable() });
+	</script>
+
+	<script type="text/javascript">
 
 		function delete_medico(id, nombre, apellido){
 			var url_delete = "medico_controller.php?id=" + id + "&op=D";
@@ -58,6 +45,9 @@ require 'conn_close.php';
 			document.getElementById('eliminar_span').textContent = nombre + " " + apellido;
 			document.getElementById("a_delete").setAttribute("href", url_delete);
 		}
+	</script>
+
+	<script type="text/javascript">
 
 		function delete_lugar(id, nombre){
 			var url_delete = "lugar_controller.php?id=" + id + "&op=D";
@@ -111,7 +101,6 @@ require 'conn_close.php';
 						<th>Nombre</th>
 						<th>Apellido</th>
 						<th>Correo</th>
-						<th>Teléfono</th>
 						<th>Imágen</th>
 						<th width="11%">Opciones</th>
 					</tr>
@@ -133,7 +122,6 @@ require 'conn_close.php';
 									echo "<td>" . $row["nombre"] 	. "</td>";
 									echo "<td>" . $row["apellido"] 	. "</td>";
 									echo "<td>" . $row["correo"] 	. "</td>";
-									echo "<td>" . $row["telefono"] 	. "</td>";
 									echo "<td>" . @$row["imagen"] 	. "</td>";
 									echo "<td valign='center' align='center'>
 												<a href='medico_details.php?id={$id}'
@@ -146,7 +134,7 @@ require 'conn_close.php';
 
 												<button type='button' class='btn btn-danger btn-xs' 
 												data-toggle='modal' data-target='.bs-example-modal-sm' 
-												id='eliminar' onclick='delete_medico($id, \"{$nombre}\", \"{$apellido}\" )'> 
+												id='eliminar' onclick='delete_medico($id, \"{$nombre}\", \"{$apellido}\")'> 
 												<span class='glyphicon glyphicon-remove'></span> </button>
 										</td>";
 								echo "</tr>";

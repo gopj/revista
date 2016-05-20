@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS `medicos` (
 -- Dumping data for table `medicos`
 --
 
-INSERT INTO `medicos` (`id_medico`, `nombre`, `apellido`, `correo`, `telefono`, `imagen`) VALUES
-(2, 'Figo', 'Gonzalez', 'figo@rev.com', 2147483647, '/images/medicos/default.png');
+INSERT INTO `medicos` (`id_medico`, `nombre`, `apellido`, `correo`, `imagen`) VALUES
+(2, 'Figo', 'Gonzalez', 'figo@rev.com', '/images/medicos/default.png');
 
 -- --------------------------------------------------------
 

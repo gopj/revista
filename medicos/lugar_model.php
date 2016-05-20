@@ -23,7 +23,7 @@
 
 				VALUES (
 					'{$nombre}',
-					'{$telefono}',
+					{$telefono},
 					'{$direccion}',
 					{$lat},
 					{$lng}
@@ -65,10 +65,6 @@
 
 	function delete_lugar($id){
 		$conn = conn();
-
-		$sql = "SELECT * FROM revista.lugares WHERE id_lugar={$id};";
-		$result = $conn->query($sql);
-
 
 		$sql = "DELETE FROM revista.lugares WHERE id_lugar={$id}; ";
 		$conn->query($sql);
