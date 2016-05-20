@@ -13,14 +13,12 @@
 	function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $image){
 		$conn = conn();
 
+		
 		$sql = "INSERT INTO revista.medicos (
 					nombre,
 					apellido,
 					correo,
 					telefono,
-					direccion,
-					lat,
-					lng,
 					imagen
 				)
 
@@ -29,7 +27,6 @@
 					'{$apellido}',
 					'{$correo}',
 					'{$telefono}',
-					'{$direccion}',
 					'{$image}'
 				);
 
@@ -59,7 +56,6 @@
 					apellido 	= '{$apellido}',
 					correo 		= '{$correo}',
 					telefono 	= '{$telefono}',
-					direccion 	= '{$direccion}',
 					imagen 		= '{$image}'
 
 				WHERE id_medico={$id}; ";
