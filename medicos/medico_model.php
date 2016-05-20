@@ -10,7 +10,7 @@
 
 	}
 
-	function insert_medico($nombre, $apellido, $correo, $telefono, $direccion, $image){
+	function insert_medico($nombre, $apellido, $correo, $telefono, $image){
 		$conn = conn();
 
 		
