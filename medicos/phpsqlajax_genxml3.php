@@ -1,5 +1,5 @@
 <?php
-require("phpsqlajax_dbinfo.php");
+require("dbinfo.php");
 function parseToXML($htmlStr) 
 { 
 $xmlStr=str_replace('<','&lt;',$htmlStr); 
@@ -10,7 +10,7 @@ $xmlStr=str_replace("&",'&amp;',$xmlStr);
 return $xmlStr; 
 } 
 // Opens a connection to a MySQL server
-$connection=mysql_connect (localhost, $username, $password);
+$connection=mysql_connect ("localhost", $username, $password);
 if (!$connection) {
   die('Not connected : ' . mysql_error());
 }

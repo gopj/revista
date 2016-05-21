@@ -1,5 +1,6 @@
 <?php
 	$conn = conn();
+	
 	// This function is used to create connections to the DB
 	function conn() {
 		$servername = "localhost";

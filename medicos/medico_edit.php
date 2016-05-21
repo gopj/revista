@@ -15,16 +15,18 @@ $show_image = get_image($id);
 	<title> Medicos - Editar</title>
 </head>
 
+<script type="text/javascript">
+	var init = "e";
+	var id = "<?php echo $id; ?>"; //variable de id, desde el boton de edit
+</script>
+
 <link rel="stylesheet" type="text/css" href="/revista/css/bootstrap-select.min.css" />
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
-<script src="/revista/medicos/maps/function_maps.js" type="text/javascript"></script>
+<script src="/revista/medicos/maps/map_lugares.js" type="text/javascript"></script>
 
 
 <?php include '../layouts/libraries.php'; ?>
 
-<script type="text/javascript">
-	var init = "e";
-</script>
 
 
 <script type="text/javascript">
@@ -57,7 +59,7 @@ $(function() {
 	}
 </style>
 
-<body>
+<body onload="load()">
 
 <?php include '../layouts/header.php'; ?>
 
@@ -100,15 +102,6 @@ $(function() {
 			<input type="correo" name="correo" class="form-control" id="correo" value="<?php echo $row['correo'] ?>">
 		</div>
 
-		<div class="form-group">
-			<label for="telefono">Teléfono</label>
-			<input type="tel" name="telefono" class="form-control" id="telefono" value="<?php echo $row['telefono'] ?>">
-		</div>
-
-		<div class="form-group">
-			<label for="direccion">Dirección</label>
-			<input type="text" name="direccion" class="form-control" id="direccion" value="<?php echo $row['direccion'] ?>" >
-		</div>
 
 		<div class="form-group">
 			<label for="imagen">Ruta de imágen</label> <div id="defaultimg" role='button' class='btn btn-danger btn-xs'>Default</div>
@@ -119,17 +112,22 @@ $(function() {
 		<div class="form-group">
 			<label for="basic">Centros Medicos</label>
 
-			<select class="selectpicker form-control" multiple="" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true">
+			<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="lugares[]" id="lugares">
 				<optgroup label="Centros Médicos" data-subtext="Selecciona uno o varios">
-					<option>ASD</option>
-					<option>Bla</option>
-					<option>Ble</option>
+					<?php 
+						if (lugares_all_results()) {
+							$result = lugares_all_results();
+
+							while ($row = $result->fetch_assoc()) {
+								$id = $row["id_lugar"];
+								$dir = $row["direccion"];
+								echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+							}
+						}
+					?>
 				</optgroup>
 			</select>
-			
 		</div>
-	
-		<!-- .container-fluid -->
 	
 
 		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
@@ -144,15 +142,7 @@ $(function() {
 
 	<div class="form-group">
 		<div class="full_page_photo"><div id="map"></div></div>
-		<div id="infoPanel">
-			<b>Estado del marcador:</b>
-				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
-			<b>Posición actual:</b>
-				<div id="info"></div>
-			<b>Dirección mas cercana:</b>
-				<div id="adress"></div>
-		</div>
-
+		
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-4">
 				<br>
