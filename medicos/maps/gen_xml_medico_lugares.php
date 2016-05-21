@@ -14,7 +14,7 @@ function parseToXML($htmlStr) {
 } 
 
 // Opens a connection to a MySQL server
-$connection=mysql_connect ("localhost", "root", "");
+$connection = mysql_connect("localhost", "root", "");
 if (!$connection) {
 	die('Not connected : ' . mysql_error());
 }

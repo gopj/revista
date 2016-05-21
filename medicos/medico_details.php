@@ -6,9 +6,6 @@ require 'conn_close.php';
 
 $id = $_GET["id"];
 
-$lat = getLat($id);
-$lng = getLng($id);
-
 $show_image = get_image($id);
 $name = get_name($id);
 
@@ -54,55 +51,49 @@ $name = get_name($id);
 	while ($row = $result->fetch_assoc()){
 	?>
 
-<div class="main">
-	<section class="hgroup centered">
-		<div class="container">
-			<ul class="breadcrumb pull-right">
-				<li><a href="control.php">Inicio</a> </li>
-				<li class="active">Detalles de Médico</li>
-			</ul>
-		</div>
-	</section>
-	<section class="service_teasers">
-		<div class="container">
-			<div class="service_teaser">
-				<div class="row">
-					<div class="service_photo col-sm-4 col-md-4">
-						<figure style="background-image:url(<?= '../' . $show_image ?>)"></figure>
+		<div class="main">
+			<section class="hgroup centered">
+				<div class="container">
+					<ul class="breadcrumb pull-right">
+						<li><a href="control.php">Inicio</a> </li>
+						<li class="active">Detalles de Médico</li>
+					</ul>
+				</div>
+			</section>
+			<section class="service_teasers">
+				<div class="container">
+					<div class="service_teaser">
+						<div class="row">
+							<div class="service_photo col-sm-4 col-md-4">
+								<figure style="background-image:url(<?= '../' . $show_image ?>)"></figure>
+							</div>
+							<div class="service_details col-sm-8 col-md-8">
+								<h2 class="section_header skincolored"><b><?= $row['nombre'] ?></b> <?= $row['apellido'] ?> <small>{Especialidad}</small></h2>
+
+								<p>
+									<strong>Correo: </strong> <?= $row['correo']  ?> <br>
+									<strong>Télefono: </strong> <?= $row['telefono']  ?> <br>
+									<strong>Dirección: </strong> <?= $row['direccion']  ?> <br>
+								</p>
+
+							</div>
+					   </div>
 					</div>
-					<div class="service_details col-sm-8 col-md-8">
-						<h2 class="section_header skincolored"><b><?= $row['nombre'] ?></b> <?= $row['apellido'] ?> <small>{Especialidad}</small></h2>
-
-						<p>
-							<strong>Correo: </strong> <?= $row['correo']  ?> <br>
-							<strong>Télefono: </strong> <?= $row['telefono']  ?> <br>
-							<strong>Dirección: </strong> <?= $row['direccion']  ?> <br>
-						</p>
-
-					</div>
-			   </div>
-			</div>
+				</div>
+			</section>
 		</div>
-	</section>
-</div>
-
-
 
 
 		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
-		<input type="text" name="lat" 	id="markerLat" hidden />
-		<input type="text" name="lng"	id="markerLng" hidden />
 
 
-		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
+
 
 	<?php } ?>
 
 	<div class="form-group">
 
 
-		<div class="full_page_photo"><div id="map"></div></div>
 
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-4">

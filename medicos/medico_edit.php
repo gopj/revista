@@ -6,6 +6,8 @@ require 'conn_close.php';
 
 $id = $_GET["id"];
 $show_image = get_image($id);
+$show_places= get_places($id);
+
 
 ?>
 
@@ -121,7 +123,18 @@ $(function() {
 							while ($row = $result->fetch_assoc()) {
 								$id = $row["id_lugar"];
 								$dir = $row["direccion"];
-								echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+								foreach ($show_places as $value) {
+													
+									if ($value == $id) {
+										echo "<option data-subtext='{$dir}' value='$id' selected='true'>" . $row["nombre"] . "</option>";
+									} else {
+										echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+									}
+
+								}
+
+								
+								
 							}
 						}
 					?>
@@ -131,12 +144,6 @@ $(function() {
 	
 
 		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
-		<input type="text" name="lat" 	id="markerLat" hidden />
-		<input type="text" name="lng"	id="markerLng" hidden />
-
-
-		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
 
 	<?php } ?>
 

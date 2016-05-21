@@ -16,6 +16,8 @@ function load() {
 	});
 	var infoWindow = new google.maps.InfoWindow;
 
+	console.log(id);
+
 	// Change this depending on the name of your PHP file
 	downloadUrl("maps/gen_xml_medico_lugares.php?id="+id, function(data) {
 		var xml = data.responseXML;

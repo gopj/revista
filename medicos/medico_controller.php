@@ -18,7 +18,7 @@ $image_dir 	= "/images/medicos/";
 
 //image control
 if (@$_FILES["image"]["error"] > 0) {
-	//echo "Error: " . $_FILES["image"]["error"] . "<br>";
+	//echo "Error: " . $_FILES["image"]["error"] . "<br>"; die();
 
 	if ($op == "A") {
 		$image_dir = $image_dir . "default.png";

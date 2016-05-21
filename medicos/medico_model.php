@@ -67,7 +67,7 @@
 		return $result;
 	}
 
-	function update_medico($id, $nombre, $apellido, $correo, $telefono, $direccion, $image){
+	function update_medico($id, $nombre, $apellido, $correo, $image){
 		$conn = conn();
 
 
@@ -75,7 +75,6 @@
 					nombre 		= '{$nombre}',
 					apellido 	= '{$apellido}',
 					correo 		= '{$correo}',
-					telefono 	= '{$telefono}',
 					imagen 		= '{$image}'
 
 				WHERE id_medico={$id}; ";
@@ -130,6 +129,36 @@
 		}
 
 		return $name;
+	};
+
+	function get_places($id){
+		$conn = conn();
+
+		$sql = "
+				SELECT 
+					ml.id_medico, 
+					l.nombre,
+					l.direccion,
+					l.lat, 
+					l.lng,
+					ml.id_lugar
+				FROM 
+					revista.medicos as m, 
+					revista.lugares as l, 
+					revista.medico_lugares as ml
+				WHERE 
+					m.id_medico = ml.id_medico and 
+					l.id_lugar = ml.id_lugar and 
+					ml.id_medico = {$id}; 
+			   ";
+		$result = $conn->query($sql);
+
+		$new_result = array();
+		while ($row = mysqli_fetch_assoc($result) ) {
+			$new_result[] = $row["id_lugar"];
+		}
+
+		return $new_result;
 	};
 
 ?>
