@@ -156,10 +156,6 @@ require 'conn_close.php';
 
 </div> <!-- Container -->
 
-
-
-
-
 </body>
 <?php include '../layouts/footer.php'; ?>
 </html>

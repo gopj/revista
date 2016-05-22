@@ -69,6 +69,9 @@
 		$sql = "DELETE FROM revista.lugares WHERE id_lugar={$id}; ";
 		$conn->query($sql);
 
+		$sql = " DELETE FROM revista.medico_lugares WHERE id_lugar={$id}; ";
+		$conn->query($sql);
+
 		return $result;
 	}
 

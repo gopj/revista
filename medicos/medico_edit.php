@@ -116,26 +116,29 @@ $(function() {
 
 			<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="lugares[]" id="lugares">
 				<optgroup label="Centros Médicos" data-subtext="Selecciona uno o varios">
-				<?php 
-					if (lugares_all_results()) {
-						$result = lugares_all_results();
+					<?php
+						if (lugares_all_results()) {
+							$result = lugares_all_results();
 
-						$p = 0;
-						while ($row = $result->fetch_assoc()) {
-							$id = $row["id_lugar"];
-							$dir = $row["direccion"];
-							
-							if (@$show_places[$p] == true) {
-								echo "<option data-subtext='{$dir}' value='$id' selected='true'>" . $row["nombre"] . "</option>";
-							} else {
-								echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+							$p = 0; // Print Selected
+							while ($row = $result->fetch_assoc()) {
+								$id = $row["id_lugar"];
+								$dir = $row["direccion"];
+
+								foreach ($show_places as  $value) {
+									if ($value == $id) {
+										echo "<option data-subtext='{$dir}' value='$id' selected='true'>" . $row["nombre"] . "</option>";
+										$p=1;
+									}
+								}
+
+								if ($p == 0) {
+									echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"]  . "</option>";
+								}
+								$p=0;	
 							}
-										
-							$p++;
-							
-						}
-					}
-				?>
+						}	
+					?>
 				</optgroup>
 			</select>
 		</div>
@@ -164,7 +167,10 @@ $(function() {
 
 </div>
 
-<br /> <br /> <br /> <br /> 
+<br> <br> <br>
+
+
+
 
 </body>
 <?php include '../layouts/footer.php'; ?>

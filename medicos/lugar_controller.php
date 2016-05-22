@@ -13,8 +13,6 @@ $direccion 	= @$_POST['direccion'];
 $lat 		= @$_POST['lat'];
 $lng 		= @$_POST['lng'];
 
-
-
 if ($op == "A") {
 	//Option A - Add
 	insert_lugar($nombre, $telefono, $direccion, $lat, $lng);
@@ -23,10 +21,7 @@ if ($op == "A") {
 	update_lugar($id, $nombre, $telefono, $direccion, $lat, $lng);
 } elseif ($op == "D") {
 	//Option D - Delete
-	echo $op . " " . $id . " <br> delete";
-
-
-	$del = delete_lugar($id); // ejecución de borrado
+	delete_lugar($id); // ejecución de borrado
 }
 
 header("Location: lugar_control.php");

@@ -107,8 +107,6 @@ $(document).on('ready', function() {
 
 </div>
 
-<br /> <br /> <br /> <br /> 
-
 </body>
 <?php include '../layouts/footer.php'; ?>
 </html>

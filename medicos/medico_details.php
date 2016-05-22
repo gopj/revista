@@ -96,15 +96,12 @@ while ($row = $result->fetch_assoc()){
 		</div>
 	</div>
 
-
 </div>
 
 
 
 </div>
-</div>
 
-<br /> <br /> <br /> <br /> 
 
 </body>
 <?php include '../layouts/footer.php'; ?>

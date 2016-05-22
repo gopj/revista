@@ -94,12 +94,9 @@ require 'conn_close.php';
 	</div>
 
 </form >
-
-
 </div>
 
-<?php include '../layouts/footer.php'; ?>
-
-
 </body>
+
+<?php include '../layouts/footer.php'; ?>
 </html>
