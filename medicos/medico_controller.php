@@ -59,7 +59,7 @@ if ($op == "A") {
 	insert_medico($nombre, $apellido, $correo, $image_dir, $lugares);
 } elseif ($op == "E") {
 	//Oprion E - Edit
-	update_medico($id, $nombre, $apellido, $correo, $image_dir);
+	update_medico($id, $nombre, $apellido, $correo, $image_dir, $lugares);
 } elseif ($op == "D") {
 	//Option D - Delete
 	$del = delete_medico($id); // ejecución de borrado
@@ -81,6 +81,6 @@ function image_name(){
 
 $_SESSION["active_tab"] = 1;
 
-header("Location: control.php");
+header("Location: medico_control.php");
 
 ?>

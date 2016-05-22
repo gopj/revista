@@ -58,7 +58,7 @@ $(function() {
 
 <body>
 
-<?php include '../layouts/header.php'; ?>
+<?php include '../layouts/header_lugares.php'; ?>
 
 <div class="container">
 
@@ -103,33 +103,35 @@ $(function() {
 	<?php } ?>
 
 	<div class="form-group">
-		<div class="full_page_photo"><div id="map"></div></div>
-		<div id="infoPanel">
-			<b>Estado del marcador:</b>
-				<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
-			<b>Posición actual:</b>
-				<div id="info"></div>
-			<b>Dirección mas cercana:</b>
-				<div id="adress"></div>
-		</div>
+		<div class="full_page_photo">
+			<div id="map"></div>
 
-		<div class="form-group">
-			<div class="col-sm-offset-5 col-sm-4">
-				<br>
-				<a href="control.php" class="btn btn-danger btn-lg"> Cancelar </a>
-				<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
-				<br>
+			<div id="infoPanel">
+				<b>Estado del marcador:</b>
+					<div id="markerStatus"><i>Click y arrastra el marcador.</i></div>
+				<b>Posición actual:</b>
+					<div id="info"></div>
+				<b>Dirección mas cercana:</b>
+					<div id="adress"></div>
 			</div>
 		</div>
+	</div>
 
 
+	<div class="form-group">
+		<div class="col-sm-offset-5 col-sm-4">
+			<br>
+			<a href="lugar_control.php" class="btn btn-danger btn-lg"> Cancelar </a>
+			<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
+			<br>
+		</div>
 	</div>
 
 </form >
 
 </div>
 
-<?php include '../layouts/footer.php'; ?>
-
+<br /> <br /> <br /> <br /> 
 </body>
+<?php include '../layouts/footer.php'; ?>
 </html>

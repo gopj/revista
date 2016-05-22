@@ -56,7 +56,7 @@ $name = get_name($id);
 	<section class="hgroup centered">
 		<div class="container">
 			<ul class="breadcrumb pull-right">
-				<li><a href="control.php">Inicio</a> </li>
+				<li><a href="medico_control.php">Inicio</a> </li>
 				<li class="active">Detalles de Médico</li>
 			</ul>
 		</div>
@@ -103,7 +103,7 @@ $name = get_name($id);
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-4">
 				<br>
-				<a href="control.php" class="btn btn-success btn-lg"> Regresar </a>
+				<a href="medico_control.php" class="btn btn-success btn-lg"> Regresar </a>
 
 				<br>
 			</div>

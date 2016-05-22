@@ -10,8 +10,8 @@ var customIcons = {
 };
 function load() {
 	var map = new google.maps.Map(document.getElementById("map"), {
-		center: new google.maps.LatLng(19.088052, -104.297455),
-		zoom: 14,
+		center: new google.maps.LatLng(19.075398127171532, -104.32526414306642),
+		zoom: 12,
 		mapTypeId: 'roadmap'
 	});
 	var infoWindow = new google.maps.InfoWindow;

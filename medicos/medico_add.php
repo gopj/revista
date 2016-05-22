@@ -24,7 +24,7 @@ require 'conn_close.php';
 
 <body>
 
-<?php include '../layouts/header.php'; ?>
+<?php include '../layouts/header_medicos.php'; ?>
 
 <div class="container">
 
@@ -84,7 +84,7 @@ require 'conn_close.php';
 		<div class="form-group">
 			<div class="col-sm-offset-5 col-sm-4">
 				<br>
-				<a href="control.php" class="btn btn-danger btn-lg"> Cancelar </a>
+				<a href="medico_control.php" class="btn btn-danger btn-lg"> Cancelar </a>
 				<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
 				<br>
 			</div>

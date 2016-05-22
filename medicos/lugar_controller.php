@@ -29,5 +29,5 @@ if ($op == "A") {
 	$del = delete_lugar($id); // ejecución de borrado
 }
 
-header("Location: control.php");
+header("Location: lugar_control.php");
 ?>

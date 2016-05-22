@@ -41,33 +41,30 @@ $name = get_lugar_name($id);
 </style>
 
 <body>
-<?php include '../layouts/header.php'; ?>
+<?php include '../layouts/header_lugares.php'; ?>
 
 <div class="container">
 
 <form action="lugar_controller.php?op=E&id=<?=$id?>" method="POST" enctype="multipart/form-data">
 
-	<?php
-	$result = show_lugar($id);
-	while ($row = $result->fetch_assoc()){
-	?>
+<?php
+$result = show_lugar($id);
+while ($row = $result->fetch_assoc()){
+?>
 
 <div class="main">
 	<section class="hgroup centered">
 		<div class="container">
 			<ul class="breadcrumb pull-right">
-				<li><a href="control.php">Inicio</a> </li>
+				<li><a href="lugar_control.php">Inicio</a> </li>
 				<li class="active">Detalles del Centro Médico</li>
 			</ul>
 		</div>
 	</section>
 	<section class="service_teasers">
 		<div class="container">
-			<div class="service_teaser">
 				<div class="row">
-					<div class="service_photo col-sm-4 col-md-4">
-						<figure style="background-image:url(<?= '../' . $show_image ?>)"></figure>
-					</div>
+					
 					<div class="service_details col-sm-8 col-md-8">
 						<h2 class="section_header skincolored"><b><?= $row['nombre'] ?></b> <small>{Descripción}</small></h2>
 
@@ -78,47 +75,42 @@ $name = get_lugar_name($id);
 						</p>
 
 					</div>
-			   </div>
 			</div>
 		</div>
 	</section>
 </div>
 
+<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
+<input type="text" name="lat" 	id="markerLat" hidden />
+<input type="text" name="lng"	id="markerLng" hidden />
+
+<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
+<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
+
+<?php } ?>
+
+<div class="form-group">
 
 
-
-		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
-		<input type="text" name="lat" 	id="markerLat" hidden />
-		<input type="text" name="lng"	id="markerLng" hidden />
-
-
-		<input type="text" id="dbLat" value="<?= $lat; ?>" hidden />
-		<input type="text" id="dbLng" value="<?= $lng; ?>" hidden />
-
-	<?php } ?>
+	<div class="full_page_photo"><div id="map"></div></div>
 
 	<div class="form-group">
-
-
-		<div class="full_page_photo"><div id="map"></div></div>
-
-		<div class="form-group">
-			<div class="col-sm-offset-5 col-sm-4">
-				<br>
-				<a href="control.php" class="btn btn-success btn-lg"> Regresar </a>
-
-				<br>
-			</div>
+		<div class="col-sm-offset-5 col-sm-4">
+			<br>
+			<a href="lugar_control.php" class="btn btn-success btn-lg"> Regresar </a>
+			<br>
 		</div>
-
-
 	</div>
+
+
+</div>
 
 </form >
 
 </div>
 
-<?php include '../layouts/footer.php'; ?>
+<br /> <br /> <br /> <br /> 
 
 </body>
+<?php include '../layouts/footer.php'; ?>
 </html>
