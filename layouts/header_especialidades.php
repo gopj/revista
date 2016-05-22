@@ -5,8 +5,8 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav pull-right navbar-nav">
 					<li><a href="medico_control.php">Medicos</a></li>
-					<li class="active"><a href="#">Lugares</a></li>
-					<li><a href="especialidad_control.php">Especialidades</a></li>
+					<li><a href="lugar_control.php">Lugares</a></li>
+					<li class="active"><a href="#">Especialidades</a></li>
 					<li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Páginas<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="home_alternative.html">Home Alternative</a></li>

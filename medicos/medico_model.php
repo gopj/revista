@@ -170,6 +170,7 @@
 					ml.id_medico, 
 					l.nombre,
 					l.direccion,
+					l.telefono,
 					l.lat, 
 					l.lng,
 					ml.id_lugar
@@ -184,12 +185,7 @@
 			   ";
 		$result = $conn->query($sql);
 
-		$new_result = array();
-		while ($row = mysqli_fetch_assoc($result) ) {
-			$new_result[] = $row["id_lugar"];
-		}
-
-		return $new_result;
+		return $result;
 	};
 
 ?>

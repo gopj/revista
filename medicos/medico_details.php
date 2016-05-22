@@ -49,38 +49,31 @@ $show_places= get_places($id);
 
 <?php include '../layouts/header_medicos.php'; ?>
 
-<div class="container">
-
-<div class="page-header bs-header">
-	<h1 id="editar" class="text">
-		<a class="kv-anchor" title="Permalink" href="#editar" data-toggle="tooltip">
-			<span class="glyphicon glyphicon-list-alt"></span>
-		</a> Ver <small></small>
-
-		<img src="<?= '../' . $show_image ?>" height="100" width="100" class="img-circle">
-	</h1>
-</div>
-
-
+<div class="container"> <br>
 
 <?php
 $result = show_medico($id);
 while ($row = $result->fetch_assoc()){
 ?>
-	<input type="text" name="id" value="<?php echo $row['id_medico'] ?>" hidden />
-
-	<div class="form-group">
-		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo $row['nombre'] ?>">
-	</div>
-
-	<div class="form-group">
-		<label for="apellido">Apellido</label>
-		<input type="text" name="apellido" class="form-control" id="apellido" value="<?php echo $row['apellido'] ?>">
-	</div>
-		<div class="form-group">
-		<label for="correo">Correo</label>
-		<input type="correo" name="correo" class="form-control" id="correo" value="<?php echo $row['correo'] ?>">
+	<div class="service_teaser elegant">
+		<div class="container">
+			<div class="row">
+				<div class="service_photo col-sm-4 col-md-4 wow animated rollIn">
+					<figure style="background-image:url(<?= '../' . $show_image ?>)"></figure>
+				</div>
+				<div class="service_details col-sm-8 col-md-8 wow animated slideInRight">
+					<h2 class="section_header elegant"><?php echo $row['nombre'] . " " . $row['apellido'] . "&nbsp; &nbsp; -" ?> <small> <?php echo $row['correo'] ?> </small></h2>
+					<p><strong>Centros médicos</strong><p>
+					<hr>
+						<?php 
+							foreach ($show_places as  $value) {
+								echo "<strong> {$value['nombre']}: </strong> {$value['direccion']} <br>";
+								echo "<strong> Contacto: </strong> (+52) {$value['telefono']} <hr>";
+							} 
+						?>
+				</div>
+			</div>
+		</div>
 	</div>
 
 <?php } ?>

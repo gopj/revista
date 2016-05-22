@@ -120,13 +120,14 @@ $(function() {
 						if (lugares_all_results()) {
 							$result = lugares_all_results();
 
-							$p = 0; // Print Selected
+							$p = 0; // To Print Selected
 							while ($row = $result->fetch_assoc()) {
 								$id = $row["id_lugar"];
 								$dir = $row["direccion"];
 
 								foreach ($show_places as  $value) {
-									if ($value == $id) {
+
+									if ($value['id_lugar'] == $id) {
 										echo "<option data-subtext='{$dir}' value='$id' selected='true'>" . $row["nombre"] . "</option>";
 										$p=1;
 									}
@@ -141,36 +142,27 @@ $(function() {
 					?>
 				</optgroup>
 			</select>
-		</div>
-	
 
-		<input type="text" name="imagen_del" id="imagen_del" value="<?php echo $row['imagen'] ?>" hidden >
+		</div>
 
 	<?php } ?>
 
 	<div class="form-group">
-		<div class="full_page_photo"><div id="map"></div>
-		
-		<div class="form-group">
-			<div class="col-sm-offset-5 col-sm-4">
-				<br>
-				<a href="medico_control.php" class="btn btn-danger btn-lg"> Cancelar </a>
-				<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
-				<br>
-			</div>
-		</div>
-
-
+		<div class="full_page_photo"><div id="map"></div></div>
 	</div>
 
-</form >
+	<div class="form-group">
+		<div class="col-sm-offset-5 col-sm-4">
+			<br>
+			<a href="medico_control.php" class="btn btn-danger btn-lg"> Cancelar </a>
+			<input type="submit"  class="btn btn-primary btn-lg" value="Guardar" />
+			<br>
+		</div>
+	</div>
+
+</form>
 
 </div>
-
-<br> <br> <br>
-
-
-
 
 </body>
 <?php include '../layouts/footer.php'; ?>

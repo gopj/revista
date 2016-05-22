@@ -4,8 +4,9 @@
 			<div class="navbar-header"><a class="navbar-brand" href="index.html"> <img src="../images/restart_logo.png" alt="optional logo" height="90" width="90"> <span class="logo_title"><strong>Guía Médica</strong> del Puerto</span> <span class="logo_subtitle">a multipurpose template</span> </a><a class="btn btn-navbar btn-default navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="nb_left pull-left"> <span class="fa fa-reorder"></span></span> <span class="nb_right pull-right">menu</span> </a></div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav pull-right navbar-nav">
-					<li class="active"><a href="medico_control.php">Medicos</a></li>
+					<li class="active"><a href="#">Medicos</a></li>
 					<li><a href="lugar_control.php">Lugares</a></li>
+					<li><a href="especialidad_control.php">Especialidades</a></li>
 					<li class="dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#">Páginas<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="home_alternative.html">Home Alternative</a></li>
