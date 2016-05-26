@@ -79,8 +79,10 @@ function image_name(){
 	return $date;
 }
 
-$_SESSION["active_tab"] = 1;
-
-header("Location: medico_control.php");
+if ($op == "E") {
+	header("Location: medico_edit.php?id=" . $data["id"]);
+} else {
+	header("Location: medico_control.php");
+}
 
 ?>

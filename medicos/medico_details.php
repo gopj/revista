@@ -2,11 +2,13 @@
 require 'conn_open.php';
 include 'medico_model.php';
 include 'lugar_model.php';
+include 'especialidad_model.php';
 require 'conn_close.php';
 
 $id = $_GET["id"];
 $show_image = get_image($id);
 $show_places= get_places($id);
+$show_specs = get_specs($id);
 
 
 ?>
@@ -72,6 +74,14 @@ while ($row = $result->fetch_assoc()){
 							} 
 						?>
 				</div>
+
+				<p><strong>Especialidades</strong><p>
+				<hr>
+				<?php 
+					foreach ($show_specs as  $value) {
+						echo $value["nombre"] . ", ";
+					} 
+				?>
 			</div>
 		</div>
 	</div>
