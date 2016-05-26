@@ -18,7 +18,7 @@
 
 <body>
 
-<?php include '../layouts/header_especilidades.php'; ?>
+<?php include '../layouts/header_especialidades.php'; ?>
 
 <div class="container">
 
@@ -36,7 +36,7 @@
 
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Clínica Médica">
+		<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre de especialidad">
 	</div>
 
 	<div class="form-group">

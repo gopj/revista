@@ -10,7 +10,7 @@
 
 	}
 
-	function insert_medico($nombre, $apellido, $correo, $image, $lugares){
+	function insert_medico($data){
 		$conn = conn();
 
 		$sql = "INSERT INTO revista.medicos (
@@ -21,19 +21,21 @@
 				)
 
 				VALUES (
-					'{$nombre}',
-					'{$apellido}',
-					'{$correo}',
-					'{$image}'
+					\"{$data['nombre']}\",
+					\"{$data['apellido']}\",
+					\"{$data['correo']}\",
+					\"{$data['image_dir']}\"	
 				);
+		";
 
-			   ";
 		$conn->query($sql);
-
+		/*
+			Insertar medicos lugares tabla de relaciones
+		*/
 		$sql = "SELECT * FROM revista.medicos ORDER BY id_medico DESC LIMIT 1; "; // id del medico
 		$result = $conn->query($sql);
 		$id_medico = 0; //Agregar lugares para el medico
-		if ($lugares) { //si el array ligares contiene información
+		if ($data["lugares"]) { //si el array ligares contiene información
 			
 			while ($row = mysqli_fetch_assoc($result)) {
 				$id_medico = @$row["id_medico"];
@@ -44,7 +46,35 @@
 						id_lugar
 					) ";
 
-			foreach ($lugares as $value) {
+			foreach ($data["lugares"] as $value) {
+				$conn->query($sql . "
+					VALUES (
+						{$id_medico},
+						{$value}
+					);
+				");	
+			} 
+
+		}
+
+		/*
+			Insertar medicos especialidades tabla de relaciones
+		*/
+		$sql = "SELECT * FROM revista.medicos ORDER BY id_medico DESC LIMIT 1; "; // id del medico
+		$result = $conn->query($sql);
+		$id_medico = 0; //Agregar especialidades para el medico
+		if ($data["especialidades"]) { //si el array ligares contiene información - hacer fix en edit para lugares y especialidades
+			
+			while ($row = mysqli_fetch_assoc($result)) {
+				$id_medico = @$row["id_medico"];
+			}			
+
+			$sql = "INSERT INTO revista.medico_especialidades (
+						id_medico,
+						id_especialidad
+					) ";
+
+			foreach ($data["especialidades"] as $value) {
 				$conn->query($sql . "
 					VALUES (
 						{$id_medico},
@@ -66,40 +96,30 @@
 		return $result;
 	}
 
-	function update_medico($id, $nombre, $apellido, $correo, $image, $lugares){
+	function update_medico($data){
 		$conn = conn();
 
-
 		$sql = " UPDATE revista.medicos SET
-					nombre 		= '{$nombre}',
-					apellido 	= '{$apellido}',
-					correo 		= '{$correo}',
-					imagen 		= '{$image}'
+					nombre 		= \"{$data['nombre']}\",
+					apellido 	= \"{$data['apellido']}\",
+					correo 		= \"{$data['correo']}\",
+					imagen 		= \"{$data['image_dir']}\"
 
-				WHERE id_medico={$id}; ";
+				WHERE id_medico={$data['id']}; ";
 		$result = $conn->query($sql);
 
-		$sql = " DELETE FROM revista.medico_lugares WHERE id_medico={$id}; ";
+		$sql = " DELETE FROM revista.medico_lugares WHERE id_medico={$data['id']}; ";
 		$conn->query($sql);
-		
 
-		$sql = "SELECT * FROM revista.medicos WHERE id_medico={$id} LIMIT 1;"; // id del medico
-		$result = $conn->query($sql);
-		$id_medico = 0; //Agregar lugares para el medico
-
-
-		if ($lugares) { //si el array ligares contiene información
-			
-			while ($row = mysqli_fetch_assoc($result)) {
-				$id_medico = @$row["id_medico"];
-			}			
+		if ($data["lugares"]) { //si el array ligares contiene información
+			$id_medico = $data["id"];	
 
 			$sql = "INSERT INTO revista.medico_lugares (
 						id_medico,
 						id_lugar
 					) ";
 
-			foreach ($lugares as $value) {
+			foreach ($data["lugares"] as $value) {
 
 				$conn->query($sql . "
 					VALUES (
@@ -107,10 +127,32 @@
 						{$value}
 					);
 				");	
+
 			} 
 
 		} 
 
+		$sql = " DELETE FROM revista.medico_especialidades WHERE id_medico={$data['id']}; ";
+		$conn->query($sql);
+
+		if ($data["especialidades"]) { //si el array ligares contiene información - hacer fix en edit para lugares y especialidades
+			$id_medico = $data["id"];
+
+			$sql = "INSERT INTO revista.medico_especialidades (
+						id_medico,
+						id_especialidad
+					) ";
+
+			foreach ($data["especialidades"] as $value) {
+				$conn->query($sql . "
+					VALUES (
+						{$id_medico},
+						{$value}
+					);
+				");	 //insert especialidad
+			} 
+
+		}
 
 		return "ok";
 	}
@@ -118,15 +160,18 @@
 	function delete_medico($id){
 		$conn = conn();
 
-		$sql = "SELECT * FROM revista.medicos where id_medico={$id};";
+		$sql = " DELETE FROM revista.medico_lugares WHERE id_medico={$id}; "; //borra reclacion de medico y lugar
+		$conn->query($sql);
+
+		$sql = " DELETE FROM revista.medico_especialidades WHERE id_medico={$id}; "; //borra reclacion de medico y lugar
+		$conn->query($sql);
+
+		$sql = "DELETE FROM revista.medicos WHERE id_medico={$id};"; //borra medico
 		$result = $conn->query($sql);
 
 		while ($row = @mysqli_fetch_assoc($result)) {
 			$image_del = $row["imagen"]; //para el borrado de la imgaen
 		}
-
-		$sql = " DELETE FROM revista.medico_lugares WHERE id_medico={$id}; "; //borra reclacion de medico y lugar
-		$conn->query($sql);
 
 		return $image_del;
 	}
@@ -160,32 +205,6 @@
 		}
 
 		return $name;
-	};
-
-	function get_places($id){
-		$conn = conn();
-
-		$sql = "
-				SELECT 
-					ml.id_medico, 
-					l.nombre,
-					l.direccion,
-					l.telefono,
-					l.lat, 
-					l.lng,
-					ml.id_lugar
-				FROM 
-					revista.medicos as m, 
-					revista.lugares as l, 
-					revista.medico_lugares as ml
-				WHERE 
-					m.id_medico = ml.id_medico and 
-					l.id_lugar = ml.id_lugar and 
-					ml.id_medico = {$id}; 
-			   ";
-		$result = $conn->query($sql);
-
-		return $result;
 	};
 
 ?>

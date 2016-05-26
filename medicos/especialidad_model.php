@@ -18,7 +18,7 @@
 				)
 
 				VALUES (
-					'{$nombre}',
+					'{$nombre}'
 				);
 
 			   ";
@@ -41,7 +41,7 @@
 		$conn = conn();
 
 		$sql = " UPDATE revista.especialidades SET
-					nombre 		= '{$nombre}',
+					nombre 		= '{$nombre}'
 				WHERE id_especialidad={$id}; ";
 
 		$conn->query($sql);
@@ -54,9 +54,30 @@
 
 		$sql = "DELETE FROM revista.especialidades WHERE id_especialidad={$id}; ";
 		$conn->query($sql);
+	}
+
+	function get_specs($id){
+		$conn = conn();
+
+		$sql = "
+				SELECT 
+					me.id_medico, 
+					e.nombre,
+					me.id_especialidad
+				FROM 
+					revista.medicos as m, 
+					revista.especialidades as e, 
+					revista.medico_especialidades as me
+				WHERE 
+					m.id_medico = me.id_medico and 
+					e.id_especialidad = me.id_especialidad and 
+					me.id_medico = {$id}; 
+		";
+
+		$result = $conn->query($sql);
 
 		return $result;
-	}
+	};
 
 
 ?>

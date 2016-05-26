@@ -2,12 +2,13 @@
 require 'conn_open.php';
 include 'medico_model.php';
 include 'lugar_model.php';
+require 'especialidad_model.php';
 require 'conn_close.php';
 
 $id = $_GET["id"];
 $show_image = get_image($id);
 $show_places= get_places($id);
-
+$show_specs = get_specs($id)
 
 ?>
 
@@ -26,10 +27,7 @@ $show_places= get_places($id);
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxjp7zmJJGVcBhZNEfOyiJlmKgiO8FLIU" type="text/javascript"></script>
 <script src="/revista/medicos/maps/map_lugares.js" type="text/javascript"></script>
 
-
 <?php include '../layouts/libraries.php'; ?>
-
-
 
 <script type="text/javascript">
 $(document).on('ready', function() {
@@ -42,24 +40,6 @@ $(function() {
 	});
 });
 </script>
-
-
-<style>
-	#mapCanvas {
-		width: 500px;
-		height: 400px;
-		float: left;
-	}
-
-	#infoPanel {
-		float: left;
-		margin-left: 10px;
-	}
-
-	#infoPanel div {
-		margin-bottom: 5px;
-	}
-</style>
 
 <body onload="load()">
 
@@ -110,7 +90,6 @@ $(function() {
 			<input type="text" name="imagen" class="form-control" id="imagen" value="<?php echo $row['imagen'] ?>" readonly="readonly">
 		</div>
 
-
 		<div class="form-group">
 			<label for="basic">Centros Medicos</label>
 
@@ -125,7 +104,7 @@ $(function() {
 								$id = $row["id_lugar"];
 								$dir = $row["direccion"];
 
-								foreach ($show_places as  $value) {
+								foreach ($show_places as $value) {
 
 									if ($value['id_lugar'] == $id) {
 										echo "<option data-subtext='{$dir}' value='$id' selected='true'>" . $row["nombre"] . "</option>";
@@ -142,7 +121,37 @@ $(function() {
 					?>
 				</optgroup>
 			</select>
+		</div>
 
+		<div class="form-group">
+			<label for="basic">Especialidades</label>
+
+			<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="especialidades[]" id="especialidades">
+				<optgroup label="Especialidades" data-subtext="Selecciona una o varias">
+					<?php
+						if (especialidades_all_results()) {
+							$result = especialidades_all_results();
+
+							$p = 0; // To Print Selected
+							while ($row = $result->fetch_assoc()) {
+								$id = $row["id_especialidad"];
+
+								foreach ($show_specs as $value) {
+									if ($value['id_especialidad'] == $id) {
+										echo "<option value='$id' selected='true'>" . $row["nombre"] . "</option>";
+										$p=1;
+									}
+								}
+
+								if ($p == 0) {
+									echo "<option value='$id'>" . $row["nombre"]  . "</option>";
+								}
+								$p=0;	
+							}
+						}	
+					?>
+				</optgroup>
+			</select>
 		</div>
 
 	<?php } ?>

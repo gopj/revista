@@ -2,6 +2,7 @@
 require 'conn_open.php';
 require 'lugar_model.php';
 require 'medico_model.php';
+require 'especialidad_model.php';
 require 'conn_close.php';
 ?>
 
@@ -35,8 +36,6 @@ require 'conn_close.php';
 		</a> Agregar
 	</h2>
 </div>
-
-
 
 <form action="medico_controller.php?op=A" method="POST" enctype="multipart/form-data">
 
@@ -72,6 +71,26 @@ require 'conn_close.php';
 							$id = $row["id_lugar"];
 							$dir = $row["direccion"];
 							echo "<option data-subtext='{$dir}' value='$id'>" . $row["nombre"] . "</option>";
+						}
+					}
+				?>
+			</optgroup>
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label for="basic">Especialidades</label>
+
+		<select class="selectpicker form-control" multiple="multiple" data-live-search="true" data-live-search-placeholder="Search" data-actions-box="true" name="especialidades[]" id="especialidades">
+			<optgroup label="Especialidades" data-subtext="Selecciona una o varias">
+				<?php 
+					if (especialidades_all_results()) {
+						$result = especialidades_all_results();
+
+						while ($row = $result->fetch_assoc()) {
+							$id = $row["id_especialidad"];
+							$nombre = $row["nombre"];
+							echo "<option value='$id'>" . $nombre . "</option>";
 						}
 					}
 				?>

@@ -121,4 +121,30 @@
 		return $name;
 	};
 
+	function get_places($id){
+		$conn = conn();
+
+		$sql = "
+				SELECT 
+					ml.id_medico, 
+					l.nombre,
+					l.direccion,
+					l.telefono,
+					l.lat, 
+					l.lng,
+					ml.id_lugar
+				FROM 
+					revista.medicos as m, 
+					revista.lugares as l, 
+					revista.medico_lugares as ml
+				WHERE 
+					m.id_medico = ml.id_medico and 
+					l.id_lugar = ml.id_lugar and 
+					ml.id_medico = {$id}; 
+			   ";
+		$result = $conn->query($sql);
+
+		return $result;
+	};
+
 ?>
